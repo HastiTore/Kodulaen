@@ -1,0 +1,72 @@
+name: Update Euribor and redeploy
+
+on:
+  schedule:
+    # 06:00 UTC on weekdays (08:00 Europe/Tallinn in winter).
+    - cron: "0 6 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: kodulaen-pages
+  cancel-in-progress: false
+
+env:
+  BASE_PATH: /Kodulaen
+  SITE_ORIGIN: https://hastitore.github.io
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Only commit Euribor data on main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "Refusing to update Euribor from ${GITHUB_REF}. Run this workflow on main."
+          exit 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch Euribor
+        run: python3 scripts/fetch_euribor.py
+
+      - name: Commit the snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/euribor.json
+          if git diff --cached --quiet; then
+            echo "euribor.json did not change"
+            exit 0
+          fi
+          git commit -m "Update Euribor snapshot"
+          git push
+
+      - name: Build the site
+        run: python3 scripts/build_site.py
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -88,6 +88,8 @@ The workflow cannot turn Pages on by itself. After this branch is merged:
 
 The first deploy runs when a commit reaches `main`. The site URL is <https://hastitore.github.io/Kodulaen/>.
 
+Last deploy trigger: 2026-11-09, after Pages was set to GitHub Actions and workflow permissions to read and write.
+
 ## Licence
 
 CC BY 4.0 is proposed for this compilation. The underlying facts belong to the banks and public bodies cited.

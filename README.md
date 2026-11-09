@@ -90,6 +90,8 @@ The first deploy runs when a commit reaches `main`. The site URL is <https://has
 
 Last deploy trigger: 2026-11-09, after Pages was set to GitHub Actions and workflow permissions to read and write.
 
+After each successful Pages deploy, the workflow submits the sitemap URLs to IndexNow (`https://api.indexnow.org/indexnow`) so Bing, and services that use Bing's index, can see changes. The key file is the contents of `indexnow.txt`, published at the site root. The weekday Euribor job updates `data/euribor.json`, which moves the visible page-updated date, and then runs the same IndexNow step.
+
 ## Licence
 
 CC BY 4.0 is proposed for this compilation. The underlying facts belong to the banks and public bodies cited.

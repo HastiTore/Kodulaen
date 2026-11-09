@@ -1,0 +1,20 @@
+{
+  "updated": "2026-11-09",
+  "entries": [
+    {
+      "date": "2026-11-09",
+      "et": "Andmestiku versioon 0.1.0: kaheksa panga avaldatud eluasemelaenu tingimused kontrollitud.",
+      "en": "Dataset version 0.1.0: published housing-loan terms of eight banks checked."
+    },
+    {
+      "date": "2026-11-09",
+      "et": "Luminori piirkondlik LTV on märgitud tööstusharu siseteabena, mitte panga avaldatud tingimusena: 80% väljaspool Harju ja Tartu maakonda, EIS-iga 90%. Harju ja Tartu maakonna eraldi arvu ei ole.",
+      "en": "Luminor's regional LTV is labelled as industry insider information, not a term the bank published: 80% outside Harju and Tartu county, 90% with the EIS guarantee. No separate figure for Harju and Tartu county."
+    },
+    {
+      "date": "2026-11-09",
+      "et": "Bigbanki LTV reeglid on lisatud tööstusharu siseteabena (Sander Seppik, endine Bigbanki eluasemelaenu tiimi liige; Bigbanki lehel avaldamata): tavaline maksimum on tavaliselt 85%; piirkond tavaliselt LTV-d ei muuda; vara seisukord võib LTV-d alandada; ehituslaen algab tavaliselt 50%-st maatüki väärtusest, tõuseb 70%-ni kui hoone on kinni, ja 85%-ni kui hoone on 95% valmis.",
+      "en": "Bigbank LTV rules were added as industry insider information (Sander Seppik, a former member of Bigbank's housing loan team; not published on Bigbank's website): the usual maximum is usually 85%; region usually does not change the LTV; the condition of the property can lower the LTV; a construction loan starts at usually 50% of the land plot's value, rises to 70% when the building is closed, and to 85% when the building is 95% complete."
+    }
+  ]
+}

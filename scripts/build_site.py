@@ -1002,6 +1002,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
   </div>
 </footer>
 {scripts}
+<script data-goatcounter="https://kodulaen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
 """
@@ -1583,6 +1584,7 @@ def about_body(lang: str) -> str:
 <p>Esmane keel on eesti keel. Inglise tõlge on aadressil /en/. Vene keel on plaanis ja seda veel ei ole. Andmefailide vaba tekst on kogumiku ingliskeelne sõnastus; eesti leht tõlgib selle. Allikad on pankade lehed, enamasti eesti keeles.</p>
 <h2>Masinloetavus</h2>
 <p>Sisu on HTML-is, mitte ainult skripti taga. Tabelitel on päised. JSON-LD kirjeldab andmestikku, panga toodet ja selle lehe küsimusi. Failid <a href="{esc((BASE or '') + '/llms.txt')}">llms.txt</a> ja <a href="{esc((BASE or '') + '/llms-full.txt')}">llms-full.txt</a> võtavad andmed kokku. Skeem on <a href="{esc(data_url('schema.json'))}">schema.json</a>.</p>
+<p>Leht loeb külastusi teenusega GoatCounter, mis ei kasuta küpsiseid ega salvesta isikuandmeid.</p>
 <h2>Litsents ja lahtine küsimus</h2>
 <p>{esc(T(lang, "license_line"))}</p>
 <p>{esc(T(lang, "licensing"))} {esc(tr(EURIBOR["licensing_note"], lang))}</p>
@@ -1611,6 +1613,7 @@ def about_body(lang: str) -> str:
 <p>Estonian is the primary language. English is at /en/. Russian is planned and is not available yet. Free text in the data files is the English wording of the compilation; the Estonian pages translate it. The sources are the banks’ pages, mostly in Estonian.</p>
 <h2>Machine readability</h2>
 <p>The content is in the HTML, not only behind a script. Tables have headers. JSON-LD describes the dataset, each bank product, and the questions on this page. <a href="{esc((BASE or '') + '/llms.txt')}">llms.txt</a> and <a href="{esc((BASE or '') + '/llms-full.txt')}">llms-full.txt</a> summarise the data. The schema is <a href="{esc(data_url('schema.json'))}">schema.json</a>.</p>
+<p>The site counts visits with GoatCounter, which uses no cookies and stores no personal data.</p>
 <h2>Licence and an open question</h2>
 <p>{esc(T(lang, "license_line"))}</p>
 <p>{esc(T(lang, "licensing"))} {esc(tr(EURIBOR["licensing_note"], lang))}</p>
@@ -2118,6 +2121,16 @@ def validate() -> None:
                 errors.append(f"Broken link {href} in {path}")
     if illustration_count != 10:
         errors.append(f"Expected 10 illustration sections, found {illustration_count}")
+    snippet = '<script data-goatcounter="https://kodulaen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+    missing_counter = [path for path in html_files if snippet not in path.read_text(encoding="utf-8")]
+    if missing_counter:
+        errors.append("GoatCounter snippet missing from " + ", ".join(str(path) for path in missing_counter))
+    about_et = (DIST / "meist" / "index.html").read_text(encoding="utf-8")
+    about_en = (DIST / "en" / "about" / "index.html").read_text(encoding="utf-8")
+    if "GoatCounter, mis ei kasuta küpsiseid ega salvesta isikuandmeid" not in about_et:
+        errors.append("Estonian about page is missing the GoatCounter sentence")
+    if "counts visits with GoatCounter, which uses no cookies and stores no personal data" not in about_en:
+        errors.append("English about page is missing the GoatCounter sentence")
     for lang, phrase in (("et", INSIDER_ET), ("en", INSIDER_EN)):
         folder = DIST / "en" / "banks" / "luminor" if lang == "en" else DIST / "pangad" / "luminor"
         text = html.unescape((folder / "index.html").read_text(encoding="utf-8"))

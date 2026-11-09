@@ -3,7 +3,7 @@
   "updated": "2026-11-09",
   "description": "Documentation of the static data files served at /data/. This file describes the JSON; it is not a bank term. null means the value is not published or was not found on the cited page. It never means zero.",
   "ordering": "banks[] is alphabetical by bank_name. The order is not a ranking.",
-  "neutrality": "Published terms only, plus one non-public Luminor regional LTV labelled as industry insider information. No score, no best label, no eligibility judgement.",
+  "neutrality": "Published terms, plus non-public Luminor and Bigbank LTV rules labelled as industry insider information. No score, no best label, no eligibility judgement.",
   "files": {
     "banks.json": {
       "updated_field": "meta.updated",
@@ -29,12 +29,19 @@
         "checked": "YYYY-MM-DD"
       },
       "non_url_source": {
-        "meaning": "industry insider information, not published by the bank",
-        "current": {
-          "bank": "luminor",
-          "field": "regional_ltv_rules",
-          "source": "Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09"
-        }
+        "meaning": "industry insider information, not published by the bank. Do not present these as the bank's published terms.",
+        "current": [
+          {
+            "bank": "luminor",
+            "field": "regional_ltv_rules",
+            "source": "Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09"
+          },
+          {
+            "bank": "bigbank",
+            "fields": ["usual_max_ltv_pct", "regional_ltv_rules", "property_condition_ltv", "construction_ltv_stages"],
+            "source": "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09"
+          }
+        ]
       },
       "fields": {
         "product_url_et": "Bank housing-loan page in Estonian",
@@ -51,7 +58,10 @@
         "min_down_payment_pct": "Standard minimum own contribution, percent",
         "max_ltv_pct": "Maximum loan-to-value without the EIS guarantee. Note says Derived when computed from the down payment",
         "max_ltv_with_eis_pct": "Maximum loan-to-value with the EIS guarantee",
-        "regional_ltv_rules": "Object or null. Keys outside_harju_and_tartu_county and harju_and_tartu_county, each an object of max_ltv_pct and max_ltv_with_eis_pct, or null",
+        "usual_max_ltv_pct": "Optional. Usual maximum LTV when it is stated separately from the published or derived max_ltv_pct. Absent on banks that have not reported one.",
+        "regional_ltv_rules": "Region effect on LTV. Either null, a short statement, or an object with outside_harju_and_tartu_county and harju_and_tartu_county (each an object of max_ltv_pct and max_ltv_with_eis_pct, or null).",
+        "property_condition_ltv": "Optional. How the condition of the property can change LTV. Absent when not reported.",
+        "construction_ltv_stages": "Optional list of construction-loan stages. Each item has stage, max_ltv_pct, and optionally basis, condition, and qualifier (usually). Absent when not reported.",
         "max_term_years": "Maximum term in years",
         "eis_participation": "Bank offers the EIS housing-loan guarantee",
         "eis_programs": "Target-group codes the bank names, or null if the bank does not itemise them. Codes: young_family, young_specialist, energy_efficient, large_family, veteran, returned_dwelling_tenant, rural",

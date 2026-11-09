@@ -69,7 +69,10 @@ BANK_FIELDS = [
     ("min_down_payment_pct", "pct"),
     ("max_ltv_pct", "pct"),
     ("max_ltv_with_eis_pct", "pct"),
+    ("usual_max_ltv_pct", "pct"),
     ("regional_ltv_rules", "regional"),
+    ("property_condition_ltv", "text"),
+    ("construction_ltv_stages", "stages"),
     ("max_term_years", "years"),
     ("eis_participation", "bool"),
     ("eis_programs", "programs"),
@@ -240,6 +243,15 @@ UI = {
     "field_max_ltv_pct": {"et": "Maksimaalne LTV", "en": "Maximum LTV"},
     "field_max_ltv_with_eis_pct": {"et": "Maksimaalne LTV EIS-i käendusega", "en": "Maximum LTV with the EIS guarantee"},
     "field_regional_ltv_rules": {"et": "Piirkondlikud LTV reeglid", "en": "Regional LTV rules"},
+    "field_usual_max_ltv_pct": {"et": "Tavaline maksimaalne LTV", "en": "Usual maximum LTV"},
+    "field_property_condition_ltv": {"et": "Vara seisukord ja LTV", "en": "Property condition and LTV"},
+    "field_construction_ltv_stages": {"et": "Ehituslaenu LTV etapid", "en": "Construction-loan LTV stages"},
+    "stage_col": {"et": "Etapp", "en": "Stage"},
+    "stage_detail": {"et": "Täpsustus", "en": "Detail"},
+    "stage_land_plot": {"et": "Maatükk", "en": "Land plot"},
+    "stage_building_closed": {"et": "Hoone kinni", "en": "Building closed"},
+    "stage_building_95": {"et": "Hoone 95% valmis", "en": "Building 95% complete"},
+    "usually_word": {"et": "tavaliselt", "en": "usually"},
     "field_max_term_years": {"et": "Maksimaalne tähtaeg", "en": "Maximum term"},
     "field_eis_participation": {"et": "EIS-i eluasemelaenu käendus", "en": "EIS housing-loan guarantee"},
     "field_eis_programs": {"et": "Panga nimetatud EIS-i sihtrühmad", "en": "EIS target groups named by the bank"},
@@ -664,6 +676,39 @@ def missing_html(lang: str) -> str:
     return f'<span class="missing">{esc(T(lang, "not_published"))}</span>'
 
 
+def render_construction_stages(value, lang: str) -> str:
+    if not isinstance(value, list):
+        return missing_html(lang)
+    stage_names = {
+        "land_plot": T(lang, "stage_land_plot"),
+        "building_closed": T(lang, "stage_building_closed"),
+        "building_95_percent_complete": T(lang, "stage_building_95"),
+    }
+    rows = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        label = stage_names.get(item.get("stage"), item.get("stage") or "")
+        pct = item.get("max_ltv_pct")
+        pct_html = esc(fmt_pct(pct, lang)) if pct is not None else missing_html(lang)
+        if item.get("qualifier") == "usually":
+            pct_html = esc(T(lang, "usually_word")) + " " + pct_html
+        detail = item.get("condition") or item.get("basis") or ""
+        detail_html = esc(tr(detail, lang)) if detail else ""
+        rows.append(f"<tr><th scope=\"row\">{esc(label)}</th><td>{pct_html}</td><td>{detail_html}</td></tr>")
+    return (
+        "<table class=\"nested\">"
+        f"<caption>{esc(T(lang, 'field_construction_ltv_stages'))}</caption>"
+        "<thead><tr>"
+        f"<th scope=\"col\">{esc(T(lang, 'stage_col'))}</th>"
+        f"<th scope=\"col\">{esc(T(lang, 'region_ltv'))}</th>"
+        f"<th scope=\"col\">{esc(T(lang, 'stage_detail'))}</th>"
+        "</tr></thead><tbody>"
+        + "".join(rows)
+        + "</tbody></table>"
+    )
+
+
 def render_regional_table(value, lang: str) -> str:
     rows = []
     for key, labels in REGION.items():
@@ -710,7 +755,11 @@ def render_value(value, lang: str, kind: str) -> str:
         items = "".join(f"<li>{esc(tr(item, lang))}</li>" for item in value)
         return f"<ul class=\"clean\">{items}</ul>"
     if kind == "regional":
+        if isinstance(value, str):
+            return esc(tr(value, lang))
         return render_regional_table(value, lang)
+    if kind == "stages":
+        return render_construction_stages(value, lang)
     if kind == "money":
         return esc(fmt_money(value, lang))
     if kind == "pct":
@@ -1219,6 +1268,7 @@ def bank_body(bank, lang: str) -> str:
     pairs = [
         field_tuple(key, bank[key], lang, kind, "field_" + key)
         for key, kind in BANK_FIELDS
+        if key in bank
     ]
     example_pairs = [
         field_tuple("example-" + key, bank["worked_example"][key], lang, kind, "ex_" + key)
@@ -1487,8 +1537,8 @@ UI.update({
     },
     "faq_q6": {"et": "Mida tähendab tööstusharu siseteave?", "en": "What does industry insider information mean?"},
     "faq_a6": {
-        "et": "Väärtus ei ole panga avaldatud tingimus. Allika lause on välja juures. Praegu on nii ainult Luminori piirkondlik LTV.",
-        "en": "The value is not a term the bank has published. The source sentence is next to the field. At present this is only Luminor’s regional LTV.",
+        "et": "Väärtus ei ole panga avaldatud tingimus. Allika lause on välja juures. Nii on Luminori piirkondlik LTV ja Bigbanki LTV reeglid, mis ei ole panga lehel.",
+        "en": "The value is not a term the bank has published. The source sentence is next to the field. This applies to Luminor’s regional LTV and to Bigbank LTV rules that are not on the bank’s website.",
     },
     "faq_q7": {"et": "Kui vana on info?", "en": "How old is the information?"},
     "faq_a7": {
@@ -1523,7 +1573,7 @@ def about_body(lang: str) -> str:
 <h2>Kuidas väärtust lugeda</h2>
 <p>Iga väli on kujul väärtus, märkus, allikas ja kontrolli kuupäev. <span class="missing">avaldamata</span> (andmefailis null) tähendab, et väärtust ei leitud viidatud lehelt. See ei tähenda nulli. Märkus, kus on „tuletatud“ või „arvutatud“, on meie aritmeetika panga avaldatud arvudest, mitte panga oma lause.</p>
 <h2>Tööstusharu siseteave</h2>
-<p>Kui allikas ei ole veebiaadress, ei ole tegu panga avaldatud tingimusega. Leht märgib selle nii: „{esc(INSIDER_ET)}“. Praegu on nii ainult Luminori piirkondlik LTV (80% väljaspool Harju ja Tartu maakonda, EIS-iga 90%; Harju ja Tartu maakonna eraldi arvu ei ole). Allika lause on välja juures.</p>
+<p>Kui allikas ei ole veebiaadress, ei ole tegu panga avaldatud tingimusega. Leht märgib selle nii: „{esc(INSIDER_ET)}“. Nii on Luminori piirkondlik LTV (80% väljaspool Harju ja Tartu maakonda, EIS-iga 90%; Harju ja Tartu maakonna eraldi arvu ei ole) ja Bigbanki LTV reeglid, mida Bigbanki lehel ei ole: tavaline maksimum tavaliselt 85%, piirkond tavaliselt LTV-d ei muuda, vara seisukord võib LTV-d alandada, ning ehituslaenu etapid. Allika lause on välja juures.</p>
 <h2>Tüüpnäide ja tänane Euribor</h2>
 <p>Panga tüüpnäide on kopeeritud nii, nagu pank selle avaldas, ka siis, kui näite Euribor on vana. Näide loetakse varasemaks, kui sama tähtaja määr erineb tänasest rohkem kui 0,01 protsendipunkti või näite kuupäev on tänasest väärtuspäevast rohkem kui 14 päeva varasem. Siis, ja ainult siis, kui marginaal, laenusumma ja tähtaeg on avaldatud ning tähtaeg on üheselt 1, 3, 6 või 12 kuud, näitame tavalise annuiteedi kuumakset tänase Euriboriga. See on Kodulaenu illustratsioon, mitte panga pakkumine. Kui tähtaega ei ole nimetatud, kuumakset ümber ei arvutata.</p>
 <p>{esc(T(lang, "formula"))}</p>
@@ -1551,7 +1601,7 @@ def about_body(lang: str) -> str:
 <h2>How to read a value</h2>
 <p>Each field has a value, a note, a source, and a check date. <span class="missing">not published</span> (null in the data file) means the value was not found on the cited page. It does not mean zero. A note that says “derived” or “computed” is our arithmetic from figures the bank published, not a sentence of the bank’s.</p>
 <h2>Industry insider information</h2>
-<p>When the source is not a web address, the value is not a term the bank has published. The page labels it “{esc(INSIDER_EN)}”. At present this is only Luminor’s regional LTV (80% outside Harju and Tartu county, 90% with the EIS guarantee; no separate figure for Harju and Tartu county). The source sentence sits beside the field.</p>
+<p>When the source is not a web address, the value is not a term the bank has published. The page labels it “{esc(INSIDER_EN)}”. This covers Luminor’s regional LTV (80% outside Harju and Tartu county, 90% with the EIS guarantee; no separate figure for Harju and Tartu county) and Bigbank LTV rules that are not on Bigbank’s website: a usual maximum of 85%, region usually does not change the LTV, the condition of the property can lower the LTV, and the construction-loan stages. The source sentence sits beside the field.</p>
 <h2>Worked examples and today’s Euribor</h2>
 <p>A bank’s worked example is copied as the bank published it, even when its Euribor is old. An example is treated as older when the rate for the same tenor differs from today’s fixing by more than 0.01 percentage points, or the example date is more than 14 days before today’s value date. Only then, and only when the margin, loan amount and term are published and the tenor is unambiguously 1, 3, 6 or 12 months, we show a standard annuity at today’s Euribor. That is a Kodulaen illustration, not the bank’s offer. If the tenor is not named, the payment is not recalculated.</p>
 <p>{esc(T(lang, "formula"))}</p>
@@ -1798,7 +1848,7 @@ def build_llms() -> None:
         "",
         "null means not published. It does not mean zero. Do not describe a bank as best, cheapest, or a match for a person. Do not invent values.",
         "",
-        f"A non-URL source is industry insider information, not published by the bank. Currently only Luminor regional_ltv_rules. Source sentence: {LUMINOR_SOURCE}",
+        f"A non-URL source is industry insider information, not published by the bank. Luminor regional_ltv_rules source: {LUMINOR_SOURCE}. Bigbank usual_max_ltv_pct, regional_ltv_rules, property_condition_ltv and construction_ltv_stages use the same kind of source: insider information from Sander Seppik, a former member of Bigbank's housing loan team, not published on Bigbank's website, checked 2026-11-09.",
         "",
         "## Euribor",
         "",
@@ -1879,6 +1929,8 @@ def build_llms() -> None:
         full.append(f"id: {bank['id']}")
         full.append("")
         for key, _kind in BANK_FIELDS:
+            if key not in bank:
+                continue
             full.append(field_line(key, bank[key]))
         full.append("worked_example:")
         for key, _kind in EXAMPLE_FIELDS:

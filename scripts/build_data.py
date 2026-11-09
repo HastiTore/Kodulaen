@@ -1,6 +1,7 @@
 import json, csv, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 D = "2026-11-09"
+BIGBANK_INSIDER = "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09"
 def F(value, source, note=None, unit=None):
     d = {"value": value}
     if unit: d["unit"] = unit
@@ -32,6 +33,14 @@ banks.append(dict(
  min_down_payment_pct=F(15, P, "10% with EIS guarantee; down to 0% with additional collateral. EIS not available with the special (erigraafik) schedule."),
  max_ltv_pct=F(85, P, "Derived from 15% minimum down payment."),
  max_ltv_with_eis_pct=F(90, P),
+ usual_max_ltv_pct=F(85, BIGBANK_INSIDER, "Standard maximum LTV is usually 85%."),
+ regional_ltv_rules=F("Region usually does not change the LTV.", BIGBANK_INSIDER),
+ property_condition_ltv=F("The condition of the property can lower the LTV.", BIGBANK_INSIDER),
+ construction_ltv_stages=F([
+     {"stage": "land_plot", "max_ltv_pct": 50, "basis": "value of the land plot", "qualifier": "usually"},
+     {"stage": "building_closed", "max_ltv_pct": 70, "condition": "walls, roof, windows and doors installed"},
+     {"stage": "building_95_percent_complete", "max_ltv_pct": 85},
+   ], BIGBANK_INSIDER, "Construction loan (ehituslaen). LTV starts at usually 50% of the value of the land plot; once the building is closed (walls, roof, windows and doors installed) the LTV increases to 70%; once the building is 95% complete the LTV increases to 85%."),
  max_term_years=F(30, P),
  eis_participation=F(True, P),
  eis_programs=F(None, P, "Bank page mentions the EIS (KredEx) housing loan guarantee without itemising target groups; EIS lists Bigbank among issuing banks."),
@@ -308,7 +317,9 @@ json.dump({"meta": meta, "banks": banks}, open(ROOT / "data" / "banks.json", "w"
 rows = []; cols = []
 def add(row, key, f):
     v = f["value"]
-    if isinstance(v, list): v = " | ".join(map(str, v))
+    if isinstance(v, list) and any(isinstance(item, (dict, list)) for item in v):
+        v = json.dumps(v, ensure_ascii=False)
+    elif isinstance(v, list): v = " | ".join(map(str, v))
     if isinstance(v, bool): v = str(v).lower()
     if isinstance(v, dict): v = json.dumps(v, ensure_ascii=False)
     row[key] = "" if v is None else v

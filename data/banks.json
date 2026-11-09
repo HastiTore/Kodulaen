@@ -102,6 +102,46 @@
         "source": "https://www.bigbank.ee/kodulaen/",
         "checked": "2026-11-09"
       },
+      "usual_max_ltv_pct": {
+        "value": 85,
+        "note": "Standard maximum LTV is usually 85%.",
+        "source": "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": "Region usually does not change the LTV.",
+        "note": null,
+        "source": "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09",
+        "checked": "2026-11-09"
+      },
+      "property_condition_ltv": {
+        "value": "The condition of the property can lower the LTV.",
+        "note": null,
+        "source": "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09",
+        "checked": "2026-11-09"
+      },
+      "construction_ltv_stages": {
+        "value": [
+          {
+            "stage": "land_plot",
+            "max_ltv_pct": 50,
+            "basis": "value of the land plot",
+            "qualifier": "usually"
+          },
+          {
+            "stage": "building_closed",
+            "max_ltv_pct": 70,
+            "condition": "walls, roof, windows and doors installed"
+          },
+          {
+            "stage": "building_95_percent_complete",
+            "max_ltv_pct": 85
+          }
+        ],
+        "note": "Construction loan (ehituslaen). LTV starts at usually 50% of the value of the land plot; once the building is closed (walls, roof, windows and doors installed) the LTV increases to 70%; once the building is 95% complete the LTV increases to 85%.",
+        "source": "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09",
+        "checked": "2026-11-09"
+      },
       "max_term_years": {
         "value": 30,
         "note": null,
@@ -246,12 +286,6 @@
         "value": null,
         "note": "Not stated.",
         "source": "https://www.bigbank.ee/kodulaen/",
-        "checked": "2026-11-09"
-      },
-      "regional_ltv_rules": {
-        "value": null,
-        "note": "No regional LTV rule published or reported.",
-        "source": null,
         "checked": "2026-11-09"
       }
     },

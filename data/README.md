@@ -49,7 +49,10 @@ Each bank has `id`, `bank_name` (short), `legal_name`, then fields shaped like:
 | min_loan_amount_eur | Minimum loan amount |
 | min_down_payment_pct | Standard minimum own contribution |
 | max_ltv_pct / max_ltv_with_eis_pct | Max loan-to-value without / with EIS guarantee ("derived" in note if computed from the down payment) |
-| regional_ltv_rules | Region-specific LTV limits (object; CSV holds it as JSON text). `null` where none is published or reported |
+| usual_max_ltv_pct | Usual maximum LTV when stated separately from the published or derived figure. Omitted when not reported |
+| regional_ltv_rules | Region effect on LTV. `null`, a short statement, or an object of county limits (CSV holds objects and stage lists as JSON text) |
+| property_condition_ltv | Whether the condition of the property can change LTV. Omitted when not reported |
+| construction_ltv_stages | Construction-loan LTV by stage: `stage`, `max_ltv_pct`, and optionally `basis`, `condition`, `qualifier`. Omitted when not reported |
 | max_term_years | Maximum term |
 | eis_participation | Bank offers the EIS housing-loan guarantee |
 | eis_programs | EIS target groups the bank names: young_family, young_specialist, energy_efficient, large_family, veteran, returned_dwelling_tenant, rural. `null` = bank does not itemise them |
@@ -64,14 +67,15 @@ Each bank has `id`, `bank_name` (short), `legal_name`, then fields shaped like:
 
 Values computed by us (not stated by the bank) say "Computed" or "Derived" in `note`.
 
-**Non-public values.** A field whose `source` is not a URL comes from industry knowledge, not from a public page. Do not present it as the bank's published term. The site labels it "industry insider information, not published by the bank". Currently: Luminor `regional_ltv_rules` (80% LTV outside Harju and Tartu county, 90% with the EIS guarantee; Harju and Tartu county left null). Source text:
+**Non-public values.** A field whose `source` is not a URL comes from industry knowledge, not from a public page. Do not present it as the bank's published term. The site labels it "industry insider information, not published by the bank".
 
-`Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09`
+- Luminor `regional_ltv_rules`: 80% LTV outside Harju and Tartu county, 90% with the EIS guarantee; Harju and Tartu county left null. Source: `Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09`.
+- Bigbank `usual_max_ltv_pct` (usually 85%), `regional_ltv_rules` (region usually does not change the LTV), `property_condition_ltv` (the condition of the property can lower the LTV), and `construction_ltv_stages` (ehituslaen: usually 50% of the land plot's value, 70% once the building is closed, 85% at 95% complete). Source: `Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09`. Bigbank's published `max_ltv_pct` of 85% stays a figure derived from the public down-payment term.
 
 ### CSV
 
 One row per bank. Each field becomes three columns: `<field>`, `<field>__note`, `<field>__source`.
-Worked-example fields are prefixed `example_`. Lists are joined with ` | `.
+Worked-example fields are prefixed `example_`. Lists of text are joined with ` | `. Lists of objects, including `construction_ltv_stages`, are JSON text.
 
 ## Official context (`sources.json`)
 

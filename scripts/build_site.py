@@ -204,6 +204,7 @@ UI = {
     "col_term": {"et": "Max tähtaeg", "en": "Max term"},
     "col_nominal": {"et": "Näite nominaal", "en": "Example nominal"},
     "col_apr": {"et": "Näite KKM", "en": "Example APR"},
+    "col_uniform": {"et": "Samamäärane kuumakse", "en": "Same-rate payment"},
     "col_example_euribor": {"et": "Näite Euribor", "en": "Example Euribor"},
     "col_eis": {"et": "EIS", "en": "EIS"},
     "not_published": {"et": "avaldamata", "en": "not published"},
@@ -284,11 +285,11 @@ UI = {
     "ex_example_date": {"et": "Näite kuupäev", "en": "Example date"},
     "example_title": {"et": "Panga avaldatud tüüpnäide", "en": "Worked example published by the bank"},
     "example_intro": {
-        "et": "Need arvud on panga lehelt. Need ei ole Kodulaenu pakkumine ega hinnang.",
-        "en": "These figures are from the bank’s page. They are not an offer from Kodulaen and not a judgement.",
+        "et": "Need arvud on panga avaldatud tüüpnäide. Kodulaen ei ole neid muutnud. Need ei ole Kodulaenu pakkumine ega hinnang.",
+        "en": "These figures are the worked example the bank published. Kodulaen has not changed them. They are not an offer from Kodulaen and not a judgement.",
     },
     "euribor_note_title": {"et": "Näite Euribor ja tänane määr", "en": "The example Euribor and today’s fixing"},
-    "illustration_title": {"et": "Kodulaenu illustratsioon, mitte panga pakkumine", "en": "Kodulaen illustration, not the bank’s offer"},
+    "illustration_title": {"et": "Kodulaenu samamäärane näide, mitte panga pakkumine", "en": "Kodulaen same-rate example, not the bank’s offer"},
     "stale": {"et": "Näite Euribor on varasem kui tänane määr", "en": "The example Euribor is older than today’s fixing"},
     "in_line": {"et": "Näite Euribor on tänase määraga kooskõlas", "en": "The example Euribor is in line with today’s fixing"},
     "below_curve": {
@@ -668,6 +669,73 @@ def assess(bank: dict, euribor: dict) -> dict:
         if nominal is not None:
             result["pay_at_example"] = annuity(result["amount"], nominal, result["months"])
     return result
+
+
+ILLUSTRATIVE = None
+ILLUSTRATIVE_MARGIN = Decimal("2.0")
+ILLUSTRATIVE_AMOUNT = 100000
+ILLUSTRATIVE_MONTHS = 360
+
+
+def dmy(iso_date: str) -> str:
+    year, month, day = iso_date.split("-")
+    return f"{day}.{month}.{year}"
+
+
+def build_illustrative_example() -> dict:
+    fixing = EURIBOR["rates"]["6M"]
+    euribor = Decimal(str(fixing["rate_pct"]))
+    nominal = (ILLUSTRATIVE_MARGIN + euribor).quantize(Decimal("0.001"))
+    payment = annuity(ILLUSTRATIVE_AMOUNT, nominal, ILLUSTRATIVE_MONTHS)
+    return {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": True,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": float(euribor),
+        "euribor_value_date": fixing["value_date"],
+        "euribor_source_url": fixing["source_url"],
+        "nominal_rate_pct": float(nominal),
+        "loan_amount_eur": ILLUSTRATIVE_AMOUNT,
+        "term_months": ILLUSTRATIVE_MONTHS,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": float(payment),
+        "fees_included": False,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+    }
+
+
+def attach_illustrative_examples() -> None:
+    global ILLUSTRATIVE
+    ILLUSTRATIVE = build_illustrative_example()
+    for bank in BANKS:
+        fee = bank["contract_fee"]
+        bank["illustrative_example"] = {
+            **ILLUSTRATIVE,
+            "bank_published_contract_fee": {
+                "value": fee.get("value"),
+                "note": fee.get("note"),
+                "source": fee.get("source"),
+                "checked": fee.get("checked"),
+            },
+        }
+
+
+def uniform_rate_label(lang: str) -> str:
+    example = ILLUSTRATIVE
+    euribor = fmt_pct(example["euribor_pct"], lang)
+    nominal = fmt_pct(example["nominal_rate_pct"], lang)
+    if lang == "et":
+        margin = "2,0%"
+        return f"{margin} + 6 kuu Euribor ({euribor} seisuga {dmy(example['euribor_value_date'])}) = {nominal}"
+    return f"2.0% + 6-month Euribor ({euribor} on {example['euribor_value_date']}) = {nominal}"
+
+
+def uniform_assumption_note(lang: str) -> str:
+    if lang == "et":
+        return "Marginaal 2,0% on oletatud illustratsioon, et panku saaks võrrelda samadel tingimustel. Tegeliku marginaali määrab pank igale kliendile eraldi."
+    return "The 2.0% margin is an assumed illustration so the banks can be compared on equal terms. The real margin is set individually by the bank."
 
 
 def is_url(value) -> bool:
@@ -1072,6 +1140,7 @@ def comparison_section(lang: str) -> str:
         ("col_term", None),
         ("col_nominal", None),
         ("col_apr", None),
+        ("col_uniform", None),
         ("col_example_euribor", None),
         ("col_eis", None),
     ]
@@ -1119,6 +1188,11 @@ def comparison_section(lang: str) -> str:
             compact_value(bank["max_term_years"], lang, "years"),
             compact_value(example["nominal_rate_pct"], lang, "pct"),
             compact_value(example["apr_pct"], lang, "pct"),
+            (
+                f'<div class="value">{esc(fmt_money(ILLUSTRATIVE["monthly_payment_eur"], lang))}</div>'
+                f'<p class="small">{esc(uniform_rate_label(lang))}</p>'
+                f'<p class="small">{esc(uniform_assumption_note(lang))}</p>'
+            ),
             "".join(euribor_bits),
             compact_value(bank["eis_participation"], lang, "bool"),
         ]
@@ -1171,6 +1245,7 @@ def comparison_section(lang: str) -> str:
   <p class="small">{esc(T(lang, "sort_help"))}</p>
   <noscript><p>{esc(T(lang, "noscript"))}</p></noscript>
   <p class="small">{esc(T(lang, "scroll_hint"))}</p>
+  <p class="small">{esc(uniform_rate_label(lang))}. {esc(uniform_assumption_note(lang))} {esc(fmt_money(ILLUSTRATIVE["loan_amount_eur"], lang))}, {esc(fmt_months(ILLUSTRATIVE["term_months"], lang))}, annuiteet. {esc(ILLUSTRATIVE["fee_note"] if lang == "en" else "Kuumakse ei sisalda tasusid. Panga avaldatud lepingutasu on eraldi ja võib erineda.")}</p>
   <div class="table-wrap">
     <table class="compare" id="compare">
       <caption>{esc(T(lang, "caption_compare"))}</caption>
@@ -1219,72 +1294,44 @@ def home_body(lang: str) -> str:
 
 
 def illustration_html(bank, info, lang) -> str:
-    if info["status"] == "stale" and info["illustrate"]:
-        rows = []
-        nominal_note = f'<p>{esc(T(lang, "nominal_computed"))}</p>' if info["example_nominal_computed"] else ""
-        if info["pay_at_example"] is not None:
-            rows.append(
-                "<tr>"
-                f'<th scope="row">{esc(T(lang, "basis_example"))}</th>'
-                f"<td>{esc(fmt_pct(info['example_nominal'], lang))}</td>"
-                f"<td>{esc(fmt_money(info['pay_at_example'], lang))}</td>"
-                f"<td>{esc(T(lang, 'who_formula_example'))}</td>"
-                "</tr>"
-            )
-        rows.append(
-            "<tr>"
-            f'<th scope="row">{esc(T(lang, "basis_today"))}</th>'
-            f"<td>{esc(fmt_pct(info['nominal_today'], lang))}</td>"
-            f"<td>{esc(fmt_money(info['pay_today'], lang))}</td>"
-            f"<td>{esc(T(lang, 'who_illustration'))}</td>"
-            "</tr>"
-        )
-        if info["published_payment"] is not None:
-            rows.append(
-                "<tr>"
-                f'<th scope="row">{esc(T(lang, "basis_published_payment"))}</th>'
-                f"<td>{esc(fmt_pct(info['example_nominal'], lang)) if info['example_nominal'] is not None else missing_html(lang)}</td>"
-                f"<td>{esc(fmt_money(info['published_payment'], lang))}</td>"
-                f"<td>{esc(T(lang, 'who_bank'))}</td>"
-                "</tr>"
-            )
+    example = ILLUSTRATIVE
+    payment = fmt_money(example["monthly_payment_eur"], lang)
+    fee = plain_value(bank["contract_fee"], lang, "text")
+    if lang == "et":
         inputs = (
-            f"<p>{esc(T(lang, 'ex_loan_amount_eur'))}: {esc(fmt_money(info['amount'], lang))}. "
-            f"{esc(T(lang, 'ex_term_months'))}: {esc(fmt_months(info['months'], lang))}. "
-            f"{esc(T(lang, 'ex_margin_pct'))}: {esc(fmt_pct(info['margin'], lang))}. "
-            f"{esc(tenor_label(info['tenor'], lang))} Euribor: {esc(fmt_pct(info['current_rate'], lang))} "
-            f"(<time datetime=\"{esc(info['current_date'])}\">{esc(info['current_date'])}</time>).</p>"
+            f"Ühtne sisend kõigil pankadel: laenusumma {fmt_money(example['loan_amount_eur'], lang)}, "
+            f"tähtaeg {fmt_months(example['term_months'], lang)}, tagasimakse annuiteet, intress {uniform_rate_label(lang)}. "
+            f"Kuumakse selle valemiga on {payment}. Lepingutasu ei ole kuumakse sees. "
+            f"Panga avaldatud lepingutasu, mis võib erineda: {fee}."
         )
-        return (
-            f'<section class="illustration" id="illustratsioon" aria-labelledby="illus-title">'
-            f'<h2 id="illus-title">{esc(T(lang, "illustration_title"))}</h2>'
-            f'<p class="flag">{esc(T(lang, "stale"))}</p>'
-            f"{inputs}{nominal_note}"
-            '<div class="table-wrap"><table>'
-            f'<caption>{esc(T(lang, "caption_illus"))}</caption>'
-            "<thead><tr>"
-            f'<th scope="col">{esc(T(lang, "col_basis"))}</th>'
-            f'<th scope="col">{esc(T(lang, "ex_nominal_rate_pct"))}</th>'
-            f'<th scope="col">{esc(T(lang, "ex_monthly_payment_eur"))}</th>'
-            f'<th scope="col">{esc(T(lang, "col_who"))}</th>'
-            "</tr></thead><tbody>"
-            + "".join(rows)
-            + "</tbody></table></div>"
-            f"<p>{esc(T(lang, 'formula'))}</p>"
-            f"<p>{esc(T(lang, 'formula_excludes'))}</p>"
-            f'<p class="small"><a href="{esc(EURIBOR["source_url"])}">euribor-rates.eu</a></p>'
-            "</section>"
-        )
-    if info["status"] == "below_curve":
-        text = T(lang, "below_curve")
-    elif info["status"] == "current":
-        text = T(lang, "in_line")
     else:
-        text = T(lang, "unknown_status")
+        inputs = (
+            f"Uniform inputs for every bank: loan amount {fmt_money(example['loan_amount_eur'], lang)}, "
+            f"term {fmt_months(example['term_months'], lang)}, annuity repayment, rate {uniform_rate_label(lang)}. "
+            f"The payment on that formula is {payment}. The contract fee is not inside the payment. "
+            f"The bank's published contract fee, which may differ: {fee}."
+        )
+    stale = ""
+    if info["status"] == "stale":
+        stale = f'<p class="flag">{esc(T(lang, "stale"))}</p>'
+    elif info["status"] == "below_curve":
+        stale = f"<p>{esc(T(lang, 'below_curve'))}</p>"
+    elif info["status"] == "unknown":
+        stale = f"<p>{esc(T(lang, 'unknown_status'))}</p>"
+    elif info["status"] == "current":
+        stale = f"<p>{esc(T(lang, 'in_line'))}</p>"
     return (
-        f'<section id="euribor-vordlus" aria-labelledby="eur-note-title">'
-        f'<h2 id="eur-note-title">{esc(T(lang, "euribor_note_title"))}</h2>'
-        f"<p>{esc(text)}</p>"
+        f'<section class="illustration" id="illustratsioon" aria-labelledby="illus-title">'
+        f'<h2 id="illus-title">{esc(T(lang, "illustration_title"))}</h2>'
+        f"<p>{esc(uniform_assumption_note(lang))}</p>"
+        f"<p>{esc(inputs)}</p>"
+        f"{stale}"
+        f"<p>{esc(T(lang, 'formula'))}</p>"
+        f"<p>{esc(T(lang, 'formula_excludes'))}</p>"
+        f'<p class="prov">{source_html(bank["contract_fee"].get("source"), lang)} '
+        f'<time datetime="{esc(bank["contract_fee"].get("checked") or "")}">{esc(bank["contract_fee"].get("checked") or "")}</time> · '
+        f'<a href="{esc(example["euribor_source_url"])}">euribor-rates.eu</a> '
+        f'<time datetime="{esc(example["euribor_value_date"])}">{esc(example["euribor_value_date"])}</time></p>'
         "</section>"
     )
 
@@ -1334,7 +1381,9 @@ def bank_summary(bank, lang: str) -> str:
             f"Intressi alus: {bits['rate']}. Marginaal: {bits['margin']}. Lepingutasu: {bits['fee']}. "
             f"Minimaalne sissemakse: {bits['down']}. Maksimaalne LTV: {bits['ltv']}. "
             f"Maksimaalne LTV EIS-i käendusega: {bits['eis']}. Maksimaalne tähtaeg: {bits['term']}. "
-            f"Tüüpnäite nominaalintress: {bits['nominal']}. Tüüpnäite krediidi kulukuse määr: {bits['apr']}. "
+            f"Tüüpnäite nominaalintress (panga avaldatud): {bits['nominal']}. Tüüpnäite krediidi kulukuse määr (panga avaldatud): {bits['apr']}. "
+            f"Kodulaenu samamäärane näide, mitte panga pakkumine: {uniform_rate_label(lang)}, kuumakse {fmt_money(ILLUSTRATIVE['monthly_payment_eur'], lang)} "
+            f"laenusummal {fmt_money(ILLUSTRATIVE['loan_amount_eur'], lang)} ja tähtajal {fmt_months(ILLUSTRATIVE['term_months'], lang)}. "
             f"Kontrollitud {checked}. Allikad on allolevas tabelis."
         )
     else:
@@ -1343,7 +1392,9 @@ def bank_summary(bank, lang: str) -> str:
             f"Rate basis: {bits['rate']}. Margin: {bits['margin']}. Contract fee: {bits['fee']}. "
             f"Minimum down payment: {bits['down']}. Maximum LTV: {bits['ltv']}. "
             f"Maximum LTV with the EIS guarantee: {bits['eis']}. Maximum term: {bits['term']}. "
-            f"Worked-example nominal rate: {bits['nominal']}. Worked-example APR: {bits['apr']}. "
+            f"Worked-example nominal rate (published by the bank): {bits['nominal']}. Worked-example APR (published by the bank): {bits['apr']}. "
+            f"Kodulaen same-rate example, not a bank offer: {uniform_rate_label(lang)}, payment {fmt_money(ILLUSTRATIVE['monthly_payment_eur'], lang)} "
+            f"on {fmt_money(ILLUSTRATIVE['loan_amount_eur'], lang)} over {fmt_months(ILLUSTRATIVE['term_months'], lang)}. "
             f"Checked {checked}. Sources are in the table below."
         )
     if is_insider(bank.get("regional_ltv_rules", {}).get("source")) or "construction_ltv_stages" in bank:
@@ -1640,8 +1691,8 @@ UI.update({
     },
     "faq_q8": {"et": "Kas illustratsioon on panga kuumakse?", "en": "Is the illustration the bank’s monthly payment?"},
     "faq_a8": {
-        "et": "Ei. Kui näite Euribor on tänasest vanem ja marginaal on avaldatud, arvutab Kodulaen tavalise annuiteedi tänase Euriboriga. See on märgitud illustratsioonina, mitte panga pakkumisena.",
-        "en": "No. When the example Euribor is older than today’s fixing and the margin is published, Kodulaen calculates a standard annuity at today’s Euribor. It is labelled as an illustration, not as the bank’s offer.",
+        "et": "Ei. Samamäärane näide kasutab oletatud marginaali 2,0% pluss tänast 6 kuu Euriborit, ning kõigil pankadel sama summat, tähtaega ja annuiteeti. See ei ole panga avaldatud tüüpnäide ega panga pakkumine. Tegeliku marginaali määrab pank igale kliendile eraldi.",
+        "en": "No. The same-rate example uses an assumed 2.0% margin plus today’s 6-month Euribor, the same amount, term and annuity for every bank. It is not the bank’s published example and not the bank’s offer. Real margins are set individually by the bank.",
     },
     "faq_q9": {"et": "Kas vene keel on olemas?", "en": "Is Russian available?"},
     "faq_a9": {
@@ -1668,7 +1719,7 @@ def about_body(lang: str) -> str:
 <h2>Tööstusharu siseteave</h2>
 <p>Kui allikas ei ole veebiaadress, ei ole tegu panga avaldatud tingimusega. Leht märgib selle nii: „{esc(INSIDER_ET)}“. Nii on Luminori piirkondlik LTV (80% väljaspool Harju ja Tartu maakonda, EIS-iga 90%; Harju ja Tartu maakonna eraldi arvu ei ole) ja Bigbanki LTV reeglid, mida Bigbanki lehel ei ole: tavaline maksimum tavaliselt 85%, piirkond tavaliselt LTV-d ei muuda, vara seisukord võib LTV-d alandada, ning ehituslaenu etapid. Allika lause on välja juures.</p>
 <h2>Tüüpnäide ja tänane Euribor</h2>
-<p>Panga tüüpnäide on kopeeritud nii, nagu pank selle avaldas, ka siis, kui näite Euribor on vana. Näide loetakse varasemaks, kui sama tähtaja määr erineb tänasest rohkem kui 0,01 protsendipunkti või näite kuupäev on tänasest väärtuspäevast rohkem kui 14 päeva varasem. Siis, ja ainult siis, kui marginaal, laenusumma ja tähtaeg on avaldatud ning tähtaeg on üheselt 1, 3, 6 või 12 kuud, näitame tavalise annuiteedi kuumakset tänase Euriboriga. See on Kodulaenu illustratsioon, mitte panga pakkumine. Kui tähtaega ei ole nimetatud, kuumakset ümber ei arvutata.</p>
+<p>Panga tüüpnäide on kopeeritud nii, nagu pank selle avaldas, ka siis, kui näite Euribor on vana. Kodulaen neid arve ei muuda. Nende kõrval on eraldi Kodulaenu samamäärane näide: kõigil pankadel 2,0% oletatud marginaal + tänane 6 kuu Euribor, laenusumma 100 000 €, tähtaeg 360 kuud ja annuiteet. Marginaal 2,0% on illustratsioon, et panku saaks võrrelda samadel tingimustel. Tegeliku marginaali määrab pank igale kliendile eraldi. See ei ole panga pakkumine. Kuumakse ei sisalda lepingutasu; panga avaldatud lepingutasu võib erineda.</p>
 <p>{esc(T(lang, "formula"))}</p>
 <h2>Värskus</h2>
 <p>Pangatermineid kontrollitakse vähemalt kord kuus. Selle versiooni kontrolli kuupäev on {esc(TERMS_UPDATED)}. Kampaania lõpp, kui pank selle avaldab, on panga väljal „Kampaaniad“. Euribori tõmbab tööpäeviti skript aadressilt euribor-rates.eu. Kui sõelumine ebaõnnestub, vana faili ei kirjutata üle.</p>
@@ -1697,7 +1748,7 @@ def about_body(lang: str) -> str:
 <h2>Industry insider information</h2>
 <p>When the source is not a web address, the value is not a term the bank has published. The page labels it “{esc(INSIDER_EN)}”. This covers Luminor’s regional LTV (80% outside Harju and Tartu county, 90% with the EIS guarantee; no separate figure for Harju and Tartu county) and Bigbank LTV rules that are not on Bigbank’s website: a usual maximum of 85%, region usually does not change the LTV, the condition of the property can lower the LTV, and the construction-loan stages. The source sentence sits beside the field.</p>
 <h2>Worked examples and today’s Euribor</h2>
-<p>A bank’s worked example is copied as the bank published it, even when its Euribor is old. An example is treated as older when the rate for the same tenor differs from today’s fixing by more than 0.01 percentage points, or the example date is more than 14 days before today’s value date. Only then, and only when the margin, loan amount and term are published and the tenor is unambiguously 1, 3, 6 or 12 months, we show a standard annuity at today’s Euribor. That is a Kodulaen illustration, not the bank’s offer. If the tenor is not named, the payment is not recalculated.</p>
+<p>A bank’s worked example is copied as the bank published it, even when its Euribor is old. Kodulaen does not change those figures. Beside them is a separate Kodulaen same-rate example: every bank uses an assumed 2.0% margin plus today’s 6-month Euribor, a loan of €100,000, a term of 360 months and an annuity. The 2.0% margin is an illustration so the banks can be compared on equal terms. The real margin is set individually by the bank. It is not the bank’s offer. The payment excludes the contract fee; the bank’s published contract fee may differ.</p>
 <p>{esc(T(lang, "formula"))}</p>
 <h2>Freshness</h2>
 <p>Bank terms are re-checked at least monthly. This version was checked on {esc(TERMS_UPDATED)}. When a bank publishes an end date for a promotion, it is on the bank’s “Promotions” field. A script fetches Euribor from euribor-rates.eu on weekdays. If parsing fails, the previous file is left untouched.</p>
@@ -2013,7 +2064,7 @@ def build_llms() -> None:
         "",
         "## Illustrations",
         "",
-        "Where a worked example's Euribor is older than today's fixing and the example publishes a margin, term and amount, the HTML shows a standard annuity at today's Euribor. That figure is a Kodulaen illustration, not the bank's offer. It is omitted when the tenor or the margin is not published.",
+        "Where a worked example's Euribor is older than today's fixing, the bank's published numbers are still shown unchanged. Beside them, every bank has the same Kodulaen illustration: assumed 2.0% margin + current 6-month Euribor, €100,000, 360 months, annuity. The margin is assumed so the banks can be compared on equal terms. Real margins are individual. This is not a bank offer. The payment excludes fees; the published contract fee may differ.",
         "",
     ]
     write(DIST / "llms.txt", "\n".join(lines))
@@ -2051,12 +2102,8 @@ def build_llms() -> None:
             full.append(field_line("example_" + key, bank["worked_example"][key]))
         info = ASSESS[bank["id"]]
         full.append(f"euribor_comparison_status: {info['status']}")
-        if info["illustrate"]:
-            full.append(
-                "kodulaen_illustration_not_a_bank_offer: "
-                f"tenor {info['tenor']}, margin {info['margin']}, today's euribor {info['current_rate']} "
-                f"({info['current_date']}), nominal {info['nominal_today']}, annuity_payment_eur {info['pay_today']}"
-            )
+        full.append("illustrative_example:")
+        full.append(json.dumps(bank["illustrative_example"], ensure_ascii=False, indent=2))
         full.append("")
     full += ["## sources.json", "", "```json", json.dumps(SOURCES, ensure_ascii=False, indent=2), "```", ""]
     full += ["", "## Markdown twins", ""]
@@ -2225,8 +2272,8 @@ def validate() -> None:
                 continue
             if not target.exists():
                 errors.append(f"Broken link {href} in {path}")
-    if illustration_count != 10:
-        errors.append(f"Expected 10 illustration sections, found {illustration_count}")
+    if illustration_count != 16:
+        errors.append(f"Expected 16 illustration sections, found {illustration_count}")
     snippet = '<script data-goatcounter="https://kodulaen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
     missing_counter = [path for path in html_files if snippet not in path.read_text(encoding="utf-8")]
     if missing_counter:
@@ -2271,6 +2318,15 @@ def validate() -> None:
                 errors.append(f"JSON-LD parse error in {path}: {error}")
         if path.name != "404.html" and not found_ld:
             errors.append(f"Missing JSON-LD in {path}")
+    swed = next(bank for bank in BANKS if bank["id"] == "swedbank")
+    if swed["worked_example"]["nominal_rate_pct"]["value"] != 3.551:
+        errors.append("Swedbank published example nominal was changed")
+    payments = {bank["illustrative_example"]["monthly_payment_eur"] for bank in BANKS}
+    margins = {bank["illustrative_example"]["margin_pct"] for bank in BANKS}
+    if margins != {2.0} or len(payments) != 1:
+        errors.append(f"Illustrative example is not uniform: margins {margins} payments {payments}")
+    if "2,0% + 6 kuu Euribor" not in (DIST / "pangad" / "swedbank" / "index.html").read_text(encoding="utf-8"):
+        errors.append("Uniform rate label missing on the Swedbank page")
     lhv = (DIST / "pangad" / "lhv" / "index.html").read_text(encoding="utf-8")
     if "LoanOrCredit" not in lhv or "kodulaen: tingimused, intress, sissemakse ja LTV" not in lhv:
         errors.append("LHV page is missing the search title or LoanOrCredit")
@@ -2400,13 +2456,16 @@ def main() -> None:
         if set(value) != {"et", "en"}:
             raise SystemExit(f"UI key {key} is not bilingual")
     load()
+    attach_illustrative_examples()
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir()
     shutil.copytree(ROOT / "site", DIST / "assets")
     (DIST / "data").mkdir()
-    for name in ("banks.json", "banks.csv", "euribor.json", "sources.json", "schema.json", "changelog.json", "README.md"):
+    for name in ("banks.csv", "euribor.json", "sources.json", "schema.json", "changelog.json", "README.md"):
         shutil.copy(DATA / name, DIST / "data" / name)
+    write(DIST / "data" / "banks.json", json.dumps({"meta": META, "banks": BANKS}, ensure_ascii=False, indent=2) + "\n")
+    write(DATA / "banks.json", json.dumps({"meta": META, "banks": BANKS}, ensure_ascii=False, indent=2) + "\n")
     build_pages()
     import discover
     discover.S = sys.modules[__name__]

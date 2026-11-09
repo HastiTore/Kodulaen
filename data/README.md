@@ -67,6 +67,8 @@ Each bank has `id`, `bank_name` (short), `legal_name`, then fields shaped like:
 
 Values computed by us (not stated by the bank) say "Computed" or "Derived" in `note`.
 
+`illustrative_example` is not a bank term. The site build fills it from `data/euribor.json` for every bank with the same inputs: assumed margin 2.0%, 6-month Euribor, loan €100,000, term 360 months, annuity. The monthly payment excludes fees. `bank_published_contract_fee` is a copy of that bank's published contract fee. The 2.0% margin is an illustration so the banks can be compared on equal terms; the bank sets the real margin individually. `worked_example` remains the bank's published example and is not rewritten.
+
 **Non-public values.** A field whose `source` is not a URL comes from industry knowledge, not from a public page. Do not present it as the bank's published term. The site labels it "industry insider information, not published by the bank".
 
 - Luminor `regional_ltv_rules`: 80% LTV outside Harju and Tartu county, 90% with the EIS guarantee; Harju and Tartu county left null. Source: `Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09`.

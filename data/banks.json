@@ -287,6 +287,29 @@
         "note": "Not stated.",
         "source": "https://www.bigbank.ee/kodulaen/",
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "0.4% of loan amount, min €150",
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -546,6 +569,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "Up to 1% of loan amount, min €200",
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -796,6 +842,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "Up to 1% of loan amount, min €100 (construction loan min €350)",
+          "note": "Price list section valid from 16.03.2026.",
+          "source": "https://res30f.cooppank.ee/image/upload/dokumendid/est/hinnakiri_eraklient_0101.pdf",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -1040,6 +1109,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "1% of loan amount, min €150",
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -1299,6 +1391,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "0.5–0.9% of loan amount, min €300",
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -1563,6 +1678,29 @@
         "note": null,
         "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "1% of loan amount, min €100",
+          "note": "Price list valid from 01.10.2026. An older 2024 price list PDF is still online at a different URL.",
+          "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -1818,6 +1956,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "0.4% of loan amount, min €190",
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        }
       }
     },
     {
@@ -2073,6 +2234,29 @@
         "note": "No regional LTV rule published or reported.",
         "source": null,
         "checked": "2026-11-09"
+      },
+      "illustrative_example": {
+        "label": "Kodulaen illustrative same-rate example, not a bank offer",
+        "uniform": true,
+        "margin_pct": 2.0,
+        "margin_assumption": "Assumed 2.0% margin so every bank is shown on equal terms. Real margins are set individually by the bank. This is not a bank offer.",
+        "euribor_tenor": "6M",
+        "euribor_pct": 3.016,
+        "euribor_value_date": "2026-11-06",
+        "euribor_source_url": "https://www.euribor-rates.eu/en/",
+        "nominal_rate_pct": 5.016,
+        "loan_amount_eur": 100000,
+        "term_months": 360,
+        "repayment_type": "annuity",
+        "monthly_payment_eur": 537.8,
+        "fees_included": false,
+        "fee_note": "The monthly payment excludes fees. The bank's published contract fee is stored separately and may differ.",
+        "bank_published_contract_fee": {
+          "value": "0.3% of loan amount, min €190 (construction min €400)",
+          "note": "Price list valid from 31.08.2026. Young and gold clients: -30%.",
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        }
       }
     }
   ]

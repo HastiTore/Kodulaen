@@ -25,6 +25,8 @@ BASE = os.environ.get("BASE_PATH", "/Kodulaen").rstrip("/")
 ORIGIN = os.environ.get("SITE_ORIGIN", "https://hastitore.github.io").rstrip("/")
 SITE = ORIGIN + BASE
 
+PAGE_ROUTES = []
+PAGE_MODIFIED = ""
 STALE_DAYS = 14
 STALE_PP = Decimal("0.01")
 TENOR_ORDER = ["1M", "3M", "6M", "12M"]
@@ -113,6 +115,10 @@ UI = {
     "nav_rules": {"et": "Eesti Pank ja EIS", "en": "Eesti Pank and EIS"},
     "nav_euribor": {"et": "Euribor", "en": "Euribor"},
     "nav_about": {"et": "Meetod ja hoiatus", "en": "Method and disclaimer"},
+    "nav_questions": {"et": "Küsimused", "en": "Questions"},
+    "nav_compare": {"et": "Kõrvutus", "en": "Side by side"},
+    "nav_changes": {"et": "Muudatused", "en": "What changed"},
+    "page_updated": {"et": "Leht uuendatud", "en": "Page updated"},
     "lang_label": {"et": "Keel", "en": "Language"},
     "terms_checked": {"et": "Tingimused kontrollitud", "en": "Terms checked"},
     "euribor_fetched": {"et": "Euribor tõmmatud", "en": "Euribor fetched"},
@@ -915,8 +921,11 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
     locale = "et_EE" if lang == "et" else "en_GB"
     nav = [
         ("", T(lang, "nav_home"), "home"),
+        ("vorlus" if lang == "et" else "compare", T(lang, "nav_compare"), "compare"),
+        ("kusimused" if lang == "et" else "questions", T(lang, "nav_questions"), "questions"),
         ("reeglid" if lang == "et" else "rules", T(lang, "nav_rules"), "rules"),
         ("euribor", T(lang, "nav_euribor"), "euribor"),
+        ("muudatused" if lang == "et" else "changes", T(lang, "nav_changes"), "changes"),
         ("meist" if lang == "et" else "about", T(lang, "nav_about"), "about"),
     ]
     # nav hrefs are language-specific rels already. url_for adds /en for English,
@@ -949,9 +958,13 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
 <meta property="og:type" content="website">
 <meta property="og:url" content="{esc(page_url)}">
 <meta property="og:locale" content="{locale}">
+<meta property="og:locale:alternate" content="{"en_GB" if lang == "et" else "et_EE"}">
+<meta property="article:modified_time" content="{esc(PAGE_MODIFIED)}">
+<link rel="alternate" type="text/markdown" href="{esc(page_url.rstrip('/') + '/index.md' if rel else page_url + 'index.md')}">
 {head_links}
 <link rel="icon" href="{esc(asset('favicon.svg'))}" type="image/svg+xml">
 <link rel="stylesheet" href="{esc(asset('style.css'))}">
+{jsonld_script({"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "name": "Kodulaen", "url": SITE + "/", "inLanguage": ["et", "en"]}, organisation(), {"@type": "WebPage", "url": page_url, "name": full_title, "description": description, "dateModified": PAGE_MODIFIED, "inLanguage": lang}]})}
 {jsonld_script(jsonld) if jsonld else ""}
 </head>
 <body>
@@ -967,6 +980,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
         <a href="{esc(url_for("et", et_rel))}" hreflang="et" lang="et"{' aria-current="true"' if lang == "et" else ""}>ET</a>
         <a href="{esc(url_for("en", en_rel))}" hreflang="en" lang="en"{' aria-current="true"' if lang == "en" else ""}>EN</a>
       </nav>
+      <p><span>{esc(T(lang, "page_updated"))}</span> <time datetime="{esc(PAGE_MODIFIED)}">{esc(PAGE_MODIFIED)}</time></p>
       <p><span>{esc(T(lang, "terms_checked"))}</span> <time datetime="{esc(TERMS_UPDATED)}">{esc(TERMS_UPDATED)}</time></p>
       <p><span>{esc(T(lang, "euribor_fetched"))}</span> <time datetime="{esc(EURIBOR_FETCHED)}">{esc(EURIBOR_FETCHED)}</time></p>
     </div>
@@ -1044,7 +1058,7 @@ def euribor_strip(lang: str) -> str:
     )
 
 
-def home_body(lang: str) -> str:
+def comparison_section(lang: str) -> str:
     headers = [
         ("col_bank", None),
         ("col_rate", None),
@@ -1138,19 +1152,6 @@ def home_body(lang: str) -> str:
     ]
     option_html = "".join(f'<option value="{esc(value)}">{esc(T(lang, key))}</option>' for value, key in options)
     return f"""
-{euribor_strip(lang)}
-<h1>{esc(T(lang, "home_h1"))}</h1>
-<p class="lead">{esc(T(lang, "home_lead"))}</p>
-<section aria-labelledby="how">
-  <h2 id="how">{esc(T(lang, "home_read_title"))}</h2>
-  <ul>
-    <li>{esc(T(lang, "read_alpha"))}</li>
-    <li>{esc(T(lang, "read_cell"))}</li>
-    <li>{esc(T(lang, "read_null"))}</li>
-    <li>{esc(T(lang, "read_promo"))}</li>
-  </ul>
-  <p><a href="{esc(url_for(lang, "reeglid" if lang == "et" else "rules"))}">{esc(T(lang, "open_rules"))}</a></p>
-</section>
 <section aria-labelledby="compare-title">
   <h2 id="compare-title">{esc(T(lang, "nav_home"))}</h2>
   <div class="controls">
@@ -1178,6 +1179,29 @@ def home_body(lang: str) -> str:
     </table>
   </div>
 </section>
+"""
+
+
+def home_body(lang: str) -> str:
+    questions = "kusimused" if lang == "et" else "questions"
+    compare = "vorlus" if lang == "et" else "compare"
+    changes = "muudatused" if lang == "et" else "changes"
+    return f"""
+{euribor_strip(lang)}
+<h1>{esc(T(lang, "home_h1"))}</h1>
+<p class="lead">{esc(T(lang, "home_lead"))}</p>
+<p><a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a> · <a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a> · <a href="{esc(url_for(lang, changes))}">{esc(T(lang, "nav_changes"))}</a></p>
+<section aria-labelledby="how">
+  <h2 id="how">{esc(T(lang, "home_read_title"))}</h2>
+  <ul>
+    <li>{esc(T(lang, "read_alpha"))}</li>
+    <li>{esc(T(lang, "read_cell"))}</li>
+    <li>{esc(T(lang, "read_null"))}</li>
+    <li>{esc(T(lang, "read_promo"))}</li>
+  </ul>
+  <p><a href="{esc(url_for(lang, "reeglid" if lang == "et" else "rules"))}">{esc(T(lang, "open_rules"))}</a></p>
+</section>
+{comparison_section(lang)}
 <section class="panel" aria-labelledby="machines">
   <h2 id="machines">{esc(T(lang, "machines_title"))}</h2>
   <p>{esc(T(lang, "machines_lead"))}</p>
@@ -1265,6 +1289,71 @@ def illustration_html(bank, info, lang) -> str:
     )
 
 
+def bank_search_title(bank, lang: str) -> str:
+    year = TERMS_UPDATED[:4]
+    if lang == "et":
+        return f"{bank['bank_name']} kodulaen: tingimused, intress, sissemakse ja LTV ({year})"
+    return f"{bank['bank_name']} housing loan: terms, interest, down payment and LTV ({year})"
+
+
+def plain_value(field, lang: str, kind: str) -> str:
+    if not field or field.get("value") is None:
+        return T(lang, "not_published")
+    value = field["value"]
+    if kind == "pct" and isinstance(value, (int, float)) and not isinstance(value, bool):
+        return fmt_pct(value, lang)
+    if kind == "money" and isinstance(value, (int, float)) and not isinstance(value, bool):
+        return fmt_money(value, lang)
+    if kind == "years" and isinstance(value, (int, float)) and not isinstance(value, bool):
+        return fmt_years(value, lang)
+    if kind == "bool" and isinstance(value, bool):
+        return T(lang, "yes" if value else "no")
+    if isinstance(value, list):
+        return ", ".join(tr(item, lang) if isinstance(item, str) else json.dumps(item, ensure_ascii=False) for item in value)
+    if isinstance(value, str):
+        return tr(value, lang)
+    return str(value)
+
+
+def bank_summary(bank, lang: str) -> str:
+    checked = bank["rate_basis"].get("checked") or TERMS_UPDATED
+    bits = {
+        "rate": plain_value(bank["rate_basis"], lang, "text"),
+        "margin": plain_value(bank["margin"], lang, "text"),
+        "fee": plain_value(bank["contract_fee"], lang, "text"),
+        "down": plain_value(bank["min_down_payment_pct"], lang, "pct"),
+        "ltv": plain_value(bank["max_ltv_pct"], lang, "pct"),
+        "eis": plain_value(bank["max_ltv_with_eis_pct"], lang, "pct"),
+        "term": plain_value(bank["max_term_years"], lang, "years"),
+        "nominal": plain_value(bank["worked_example"]["nominal_rate_pct"], lang, "pct"),
+        "apr": plain_value(bank["worked_example"]["apr_pct"], lang, "pct"),
+    }
+    if lang == "et":
+        text = (
+            f"{bank['bank_name']} ({bank['legal_name']}) avaldab kodulaenu tingimused oma lehel. "
+            f"Intressi alus: {bits['rate']}. Marginaal: {bits['margin']}. Lepingutasu: {bits['fee']}. "
+            f"Minimaalne sissemakse: {bits['down']}. Maksimaalne LTV: {bits['ltv']}. "
+            f"Maksimaalne LTV EIS-i käendusega: {bits['eis']}. Maksimaalne tähtaeg: {bits['term']}. "
+            f"Tüüpnäite nominaalintress: {bits['nominal']}. Tüüpnäite krediidi kulukuse määr: {bits['apr']}. "
+            f"Kontrollitud {checked}. Allikad on allolevas tabelis."
+        )
+    else:
+        text = (
+            f"{bank['bank_name']} ({bank['legal_name']}) publishes its housing-loan terms on its own page. "
+            f"Rate basis: {bits['rate']}. Margin: {bits['margin']}. Contract fee: {bits['fee']}. "
+            f"Minimum down payment: {bits['down']}. Maximum LTV: {bits['ltv']}. "
+            f"Maximum LTV with the EIS guarantee: {bits['eis']}. Maximum term: {bits['term']}. "
+            f"Worked-example nominal rate: {bits['nominal']}. Worked-example APR: {bits['apr']}. "
+            f"Checked {checked}. Sources are in the table below."
+        )
+    if is_insider(bank.get("regional_ltv_rules", {}).get("source")) or "construction_ltv_stages" in bank:
+        if lang == "et":
+            text += " Osa LTV üksikasju on tööstusharu siseteave, mitte panga lehel avaldatud tingimus."
+        else:
+            text += " Some LTV detail is industry insider information, not a term published on the bank's website."
+    return text
+
+
 def bank_body(bank, lang: str) -> str:
     pairs = [
         field_tuple(key, bank[key], lang, kind, "field_" + key)
@@ -1277,10 +1366,13 @@ def bank_body(bank, lang: str) -> str:
     ]
     info = ASSESS[bank["id"]]
     page_rel = ("pangad/" if lang == "et" else "banks/") + bank["id"]
+    title = bank_search_title(bank, lang)
     return (
         crumbs_html(lang, [("Kodulaen", url_for(lang, "")), (bank["bank_name"], None)])
-        + f"<h1>{esc(bank['bank_name'])}</h1>"
-        + f"<p class=\"lead\">{esc(bank['legal_name'])}</p>"
+        + f"<h1>{esc(title)}</h1>"
+        + f"<p class=\"lead\">{esc(bank_summary(bank, lang))}</p>"
+        + f"<p class=\"small\">{esc(T(lang, 'page_updated'))} <time datetime=\"{esc(PAGE_MODIFIED)}\">{esc(PAGE_MODIFIED)}</time>. "
+        + f"{esc(T(lang, 'terms_checked'))} <time datetime=\"{esc(TERMS_UPDATED)}\">{esc(TERMS_UPDATED)}</time>.</p>"
         + fact_table(T(lang, "caption_facts").format(bank=bank["legal_name"]), fact_rows(pairs, lang), lang)
         + f'<h2 id="tuupnaide">{esc(T(lang, "example_title"))}</h2>'
         + f"<p>{esc(T(lang, 'example_intro'))}</p>"
@@ -1730,6 +1822,10 @@ def faq_jsonld(lang: str) -> dict:
     }
 
 
+def register_route(et_rel: str, en_rel: str, lastmod: str | None = None) -> None:
+    PAGE_ROUTES.append((et_rel, en_rel, lastmod or PAGE_MODIFIED))
+
+
 def page_out(lang: str, rel: str) -> Path:
     parts = [DIST]
     if lang == "en":
@@ -1780,8 +1876,8 @@ def build_pages() -> None:
         }, "", "about"))
         for bank in BANKS:
             rel = ("pangad/" if lang == "et" else "banks/") + bank["id"]
-            title = f"{bank['bank_name']}: kodulaenu tingimused" if lang == "et" else f"{bank['bank_name']}: housing-loan terms"
-            description = T(lang, "loan_ld_desc").format(legal=bank["legal_name"], updated=TERMS_UPDATED)
+            title = bank_search_title(bank, lang)
+            description = bank_summary(bank, lang)[:300]
             page_url = absolute(url_for(lang, rel))
             pages.append((lang, rel, "home", title, description, bank_body(bank, lang), {
                 "@context": "https://schema.org",
@@ -1796,9 +1892,11 @@ def build_pages() -> None:
     for lang, rel, current, title, description, body, payload, extra, kind in pages:
         actual_current = current if kind != "bank" else "bank"
         et_rel, en_rel = pair_rels(kind, rel, lang)
-        scripts = f'<script src="{esc(asset("sort.js"))}" defer></script>' if kind == "home" and rel == "" else ""
+        scripts = f'<script src="{esc(asset("sort.js"))}" defer></script>' if kind in ("home", "compare") and rel in ("", "vorlus", "compare") else ""
         html_doc = render_document(lang, rel, title, description, body, actual_current, payload, et_rel, en_rel, scripts)
         write(page_out(lang, rel), html_doc)
+        if lang == "et" and kind != "none":
+            register_route(et_rel, en_rel)
 
     not_found = render_document(
         "et", "404", T("et", "not_found_h1"), T("et", "not_found"),
@@ -1819,6 +1917,15 @@ def pair_rels(kind: str, rel: str, lang: str) -> tuple[str, str]:
         return "euribor", "euribor"
     if kind == "about":
         return "meist", "about"
+    if kind == "compare":
+        return "vorlus", "compare"
+    if kind == "questions":
+        return "kusimused", "questions"
+    if kind == "changes":
+        return "muudatused", "changes"
+    if kind == "question":
+        slug = rel.rstrip("/").split("/")[-1]
+        return f"kusimused/{slug}", f"questions/{slug}"
     bank_id = rel.rstrip("/").split("/")[-1]
     return f"pangad/{bank_id}", f"banks/{bank_id}"
 
@@ -1894,11 +2001,15 @@ def build_llms() -> None:
         "",
         "## Pages",
         "",
-        f"- [Estonian overview]({SITE}/): comparison table.",
-        f"- [English overview]({SITE}/en/): same table in English.",
-        f"- [Eesti Pank and EIS]({SITE}/reeglid/)",
-        f"- [Euribor]({SITE}/euribor/)",
-        f"- [Method and disclaimer]({SITE}/meist/)",
+        "Each HTML page has a Markdown twin at the same path with index.md.",
+        f"Page updated date (dateModified): {PAGE_MODIFIED}. It moves when the Euribor snapshot date moves.",
+        "",
+    ]
+    for et_rel, en_rel, _lastmod in PAGE_ROUTES:
+        et_url = absolute(url_for("et", et_rel))
+        en_url = absolute(url_for("en", en_rel))
+        lines.append(f"- [et]({et_url}) · [et.md]({et_url}index.md) · [en]({en_url}) · [en.md]({en_url}index.md)")
+    lines += [
         "",
         "## Illustrations",
         "",
@@ -1948,29 +2059,24 @@ def build_llms() -> None:
             )
         full.append("")
     full += ["## sources.json", "", "```json", json.dumps(SOURCES, ensure_ascii=False, indent=2), "```", ""]
+    full += ["", "## Markdown twins", ""]
+    for path in sorted(DIST.rglob("*.md")):
+        if "assets" in path.parts:
+            continue
+        full.append(f"### {path.relative_to(DIST).as_posix()}")
+        full.append("")
+        full.append(path.read_text(encoding="utf-8").strip())
+        full.append("")
     write(DIST / "llms-full.txt", "\n".join(full))
 
 
 def build_sitemap_and_robots() -> None:
-    urls = []
-    for lang in ("et", "en"):
-        pairs = [("", "")]
-        pairs.append(("reeglid", "rules") if lang == "et" else ("rules", "rules"))
-        # build from known routes
-    routes = [
-        ("", ""),
-        ("reeglid", "rules"),
-        ("euribor", "euribor"),
-        ("meist", "about"),
-    ]
-    for bank in BANKS:
-        routes.append((f"pangad/{bank['id']}", f"banks/{bank['id']}"))
-    lastmod = max(TERMS_UPDATED, EURIBOR["updated"])
+    routes = [(et_rel, en_rel, lastmod or PAGE_MODIFIED) for et_rel, en_rel, lastmod in PAGE_ROUTES]
     body = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    for et_rel, en_rel in routes:
+    for et_rel, en_rel, lastmod in routes:
         et_url = absolute(url_for("et", et_rel))
         en_url = absolute(url_for("en", en_rel))
-        for loc in (et_url, en_url):
+        for loc in (et_url, en_url, et_url + "index.md", en_url + "index.md"):
             body.append("  <url>")
             body.append(f"    <loc>{esc(loc)}</loc>")
             body.append(f"    <lastmod>{esc(lastmod)}</lastmod>")
@@ -1987,7 +2093,7 @@ def build_sitemap_and_robots() -> None:
     bots = [
         "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User",
         "anthropic-ai", "PerplexityBot", "Perplexity-User", "Google-Extended",
-        "Applebot-Extended", "Amazonbot", "CCBot", "Bytespider", "cohere-ai",
+        "Applebot-Extended", "Bingbot", "Amazonbot", "CCBot", "Bytespider", "cohere-ai",
         "Meta-ExternalAgent", "Meta-ExternalFetcher", "FacebookBot", "Diffbot",
         "YouBot", "DuckAssistBot", "MistralAI-User",
     ]
@@ -2139,7 +2245,7 @@ def validate() -> None:
         if "unverified" in text.lower():
             errors.append("unverified still present on Luminor page")
     robots = (DIST / "robots.txt").read_text(encoding="utf-8")
-    for bot in ("GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "PerplexityBot", "Google-Extended", "Applebot-Extended"):
+    for bot in ("GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "PerplexityBot", "Google-Extended", "Applebot-Extended", "Bingbot", "CCBot"):
         if bot not in robots:
             errors.append(f"robots.txt missing {bot}")
     if not (DIST / "llms.txt").exists() or not (DIST / "llms-full.txt").exists():
@@ -2152,13 +2258,34 @@ def validate() -> None:
     sitemap = (DIST / "sitemap.xml").read_text(encoding="utf-8")
     if sitemap.count("<loc>") < 24:
         errors.append("sitemap is short")
+    for path in html_files:
+        if path.suffix != ".html":
+            continue
+        raw = path.read_text(encoding="utf-8")
+        found_ld = False
+        for match in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', raw, re.S):
+            found_ld = True
+            try:
+                json.loads(match.group(1))
+            except json.JSONDecodeError as error:
+                errors.append(f"JSON-LD parse error in {path}: {error}")
+        if path.name != "404.html" and not found_ld:
+            errors.append(f"Missing JSON-LD in {path}")
+    lhv = (DIST / "pangad" / "lhv" / "index.html").read_text(encoding="utf-8")
+    if "LoanOrCredit" not in lhv or "kodulaen: tingimused, intress, sissemakse ja LTV" not in lhv:
+        errors.append("LHV page is missing the search title or LoanOrCredit")
+    faq = DIST / "kusimused" / "sissemakse" / "index.html"
+    if not faq.exists() or "FAQPage" not in faq.read_text(encoding="utf-8"):
+        errors.append("Down-payment question page is missing FAQPage JSON-LD")
+    if not (DIST / "vorlus" / "index.html").exists() or not (DIST / "muudatused" / "index.html").exists():
+        errors.append("Comparison or changes page is missing")
     if errors:
         raise SystemExit("Site check failed:\n- " + "\n- ".join(errors))
     print(f"Built {len(html_files)} HTML files, {len(BANKS)} banks, illustrations {illustration_count}")
 
 
 def load() -> None:
-    global BANKS, META, EURIBOR, SOURCES, TERMS_UPDATED, EURIBOR_FETCHED, VERSION, ASSESS, LUMINOR_SOURCE
+    global BANKS, META, EURIBOR, SOURCES, TERMS_UPDATED, EURIBOR_FETCHED, VERSION, ASSESS, LUMINOR_SOURCE, PAGE_MODIFIED
     payload = json.loads((DATA / "banks.json").read_text(encoding="utf-8"))
     META = payload["meta"]
     BANKS = payload["banks"]
@@ -2168,7 +2295,104 @@ def load() -> None:
     EURIBOR_FETCHED = EURIBOR["fetched_at"]
     VERSION = META["version"]
     LUMINOR_SOURCE = "Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09"
+    PAGE_MODIFIED = max(TERMS_UPDATED, str(EURIBOR.get("updated") or TERMS_UPDATED))
     ASSESS = {bank["id"]: assess(bank, EURIBOR) for bank in BANKS}
+
+
+class MdParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.out = []
+        self.ignore = 0
+        self.buf = []
+        self.cell = []
+        self.row = []
+        self.rows = []
+        self.in_cell = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style", "header", "footer", "nav"):
+            self.ignore += 1
+            return
+        if self.ignore:
+            return
+        if tag in ("h1", "h2", "h3", "p", "li"):
+            self.buf = []
+        if tag == "tr":
+            self.row = []
+        if tag in ("td", "th"):
+            self.in_cell = True
+            self.cell = []
+
+    def handle_endtag(self, tag):
+        if tag in ("script", "style", "header", "footer", "nav"):
+            if self.ignore:
+                self.ignore -= 1
+            return
+        if self.ignore:
+            return
+        text = " ".join("".join(self.buf).split())
+        if tag == "h1" and text:
+            self.out.append(f"# {text}\n\n")
+        elif tag == "h2" and text:
+            self.out.append(f"## {text}\n\n")
+        elif tag == "h3" and text:
+            self.out.append(f"### {text}\n\n")
+        elif tag == "p" and text:
+            self.out.append(text + "\n\n")
+        elif tag == "li":
+            if self.in_cell:
+                self.cell.append(", ")
+            elif text:
+                self.out.append(f"- {text}\n")
+        elif tag in ("td", "th"):
+            self.row.append(" ".join("".join(self.cell).split()).replace("|", "/"))
+            self.in_cell = False
+        elif tag == "tr" and any(self.row):
+            self.rows.append(self.row)
+        elif tag == "table" and self.rows:
+            width = max(len(row) for row in self.rows)
+            for index, row in enumerate(self.rows):
+                padded = row + [""] * (width - len(row))
+                self.out.append("| " + " | ".join(padded) + " |\n")
+                if index == 0:
+                    self.out.append("| " + " | ".join("---" for _ in padded) + " |\n")
+            self.out.append("\n")
+            self.rows = []
+        if tag in ("h1", "h2", "h3", "p", "li"):
+            self.buf = []
+
+    def handle_data(self, data):
+        if self.ignore:
+            return
+        if self.in_cell:
+            self.cell.append(data)
+        else:
+            self.buf.append(data)
+
+
+def html_to_markdown(document: str) -> str:
+    title = ""
+    match = re.search(r"<title>(.*?)</title>", document, re.S)
+    if match:
+        title = html.unescape(re.sub(r"\s+", " ", match.group(1))).strip()
+    main = document
+    found = re.search(r"<main[^>]*>(.*)</main>", document, re.S)
+    if found:
+        main = found.group(1)
+    parser = MdParser()
+    parser.feed(main)
+    body = "".join(parser.out).strip()
+    return f"---\ntitle: {title}\ndateModified: {PAGE_MODIFIED}\n---\n\n{body}\n"
+
+
+def write_markdown_twins() -> None:
+    for path in DIST.rglob("*.html"):
+        if path.name == "404.html":
+            continue
+        document = path.read_text(encoding="utf-8")
+        dest = path.with_name("index.md") if path.name == "index.html" else path.with_suffix(".md")
+        write(dest, html_to_markdown(document))
 
 
 def main() -> None:
@@ -2181,11 +2405,17 @@ def main() -> None:
     DIST.mkdir()
     shutil.copytree(ROOT / "site", DIST / "assets")
     (DIST / "data").mkdir()
-    for name in ("banks.json", "banks.csv", "euribor.json", "sources.json", "schema.json", "README.md"):
+    for name in ("banks.json", "banks.csv", "euribor.json", "sources.json", "schema.json", "changelog.json", "README.md"):
         shutil.copy(DATA / name, DIST / "data" / name)
     build_pages()
+    import discover
+    discover.S = sys.modules[__name__]
+    discover.extend()
+    write_markdown_twins()
     build_llms()
     build_sitemap_and_robots()
+    key = (ROOT / "indexnow.txt").read_text(encoding="utf-8").strip()
+    write(DIST / f"{key}.txt", key + "\n")
     validate()
 
 

@@ -1,0 +1,101 @@
+{
+  "kodulaen_schema": "0.1.0",
+  "updated": "2026-11-09",
+  "description": "Documentation of the static data files served at /data/. This file describes the JSON; it is not a bank term. null means the value is not published or was not found on the cited page. It never means zero.",
+  "ordering": "banks[] is alphabetical by bank_name. The order is not a ranking.",
+  "neutrality": "Published terms only, plus one non-public Luminor regional LTV labelled as industry insider information. No score, no best label, no eligibility judgement.",
+  "files": {
+    "banks.json": {
+      "updated_field": "meta.updated",
+      "shape": {
+        "meta": {
+          "dataset": "string",
+          "version": "string",
+          "updated": "YYYY-MM-DD",
+          "language_of_source_pages": "et",
+          "ordering": "string",
+          "neutrality": "string",
+          "license": "CC BY 4.0 proposed for the compilation; facts belong to the cited sources",
+          "field_format": "Each leaf field is an object"
+        },
+        "banks": "array of 8 banks, alphabetical"
+      },
+      "bank_identity": ["id", "bank_name", "legal_name"],
+      "field_object": {
+        "value": "string | number | boolean | array | object | null",
+        "unit": "optional string",
+        "note": "string or null. 'Derived' or 'Computed' means Kodulaen arithmetic from figures the bank published.",
+        "source": "URL, or a non-URL provenance sentence, or null",
+        "checked": "YYYY-MM-DD"
+      },
+      "non_url_source": {
+        "meaning": "industry insider information, not published by the bank",
+        "current": {
+          "bank": "luminor",
+          "field": "regional_ltv_rules",
+          "source": "Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09"
+        }
+      },
+      "fields": {
+        "product_url_et": "Bank housing-loan page in Estonian",
+        "product_url_en": "Bank housing-loan page in English, or null",
+        "loan_types": "Product names on the page",
+        "rate_basis": "Reference rate and margin structure",
+        "margin": "'individual' when the bank does not publish a single margin",
+        "promo_rates": "Time-limited offers, with the dates the bank states",
+        "contract_fee": "Arrangement / contract fee (lepingutasu)",
+        "valuation_fee": "Valuation cost if published",
+        "amendment_fee": "Contract-change fees",
+        "early_repayment_fee": "Early repayment compensation",
+        "min_loan_amount_eur": "Minimum loan amount in euros",
+        "min_down_payment_pct": "Standard minimum own contribution, percent",
+        "max_ltv_pct": "Maximum loan-to-value without the EIS guarantee. Note says Derived when computed from the down payment",
+        "max_ltv_with_eis_pct": "Maximum loan-to-value with the EIS guarantee",
+        "regional_ltv_rules": "Object or null. Keys outside_harju_and_tartu_county and harju_and_tartu_county, each an object of max_ltv_pct and max_ltv_with_eis_pct, or null",
+        "max_term_years": "Maximum term in years",
+        "eis_participation": "Bank offers the EIS housing-loan guarantee",
+        "eis_programs": "Target-group codes the bank names, or null if the bank does not itemise them. Codes: young_family, young_specialist, energy_efficient, large_family, veteran, returned_dwelling_tenant, rural",
+        "eis_rural": "EIS rural housing-loan guarantee, from the EIS page",
+        "green_discount": "Energy-class terms",
+        "young_buyer_offer": "Age-based terms",
+        "worked_example": "The bank's representative example. Leaf fields use the same value/note/source/checked object. Keys: loan_amount_eur, term_months, rate_type, margin_pct, euribor_pct, euribor_date, nominal_rate_pct, apr_pct, contract_fee_eur, monthly_payment_eur, total_repayments_eur, total_payable_eur, total_cost_of_credit_eur, example_date",
+        "income_rules": "Published income or affordability conditions",
+        "dsti_max_pct": "Published maximum debt-service ratio, percent",
+        "digital_application": "How to apply online, as the bank describes it",
+        "account_requirement": "Whether a current account at the bank is required"
+      }
+    },
+    "banks.csv": {
+      "updated_field": "checked column, one row per bank",
+      "shape": "One row per bank. Each JSON field becomes <field>, <field>__note, <field>__source. Worked-example keys are prefixed example_. Lists are joined with ' | '. Objects are JSON text."
+    },
+    "euribor.json": {
+      "updated_field": "updated (YYYY-MM-DD of the fetch). fetched_at is the full timestamp.",
+      "source": "https://www.euribor-rates.eu/en/",
+      "shape": {
+        "source_url": "string",
+        "source_type": "secondary source, 24-hour delay",
+        "administrator": "EMMI",
+        "fetched_at": "ISO 8601 timestamp",
+        "updated": "YYYY-MM-DD",
+        "licensing_note": "Redistribution may require an EMMI licence. Under review.",
+        "rates": {
+          "1M": {"rate_pct": "number", "value_date": "YYYY-MM-DD", "source_url": "string"},
+          "3M": "same",
+          "6M": "same",
+          "12M": "same"
+        }
+      }
+    },
+    "sources.json": {
+      "updated_field": "meta.updated and each section's checked date",
+      "sections": [
+        "euribor_6m",
+        "eesti_pank_new_housing_loans",
+        "eesti_pank_lending_rules",
+        "eis_housing_loan_guarantee",
+        "eis_rural_housing_loan_guarantee"
+      ]
+    }
+  }
+}

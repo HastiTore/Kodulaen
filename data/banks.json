@@ -1,0 +1,2045 @@
+{
+  "meta": {
+    "dataset": "Estonian bank housing-loan terms (published information)",
+    "version": "0.1.0",
+    "updated": "2026-11-09",
+    "language_of_source_pages": "et",
+    "ordering": "alphabetical by bank_name; ordering carries no meaning",
+    "neutrality": "Published terms only. No ranking, scoring or recommendation. Not financial advice. Each bank decides on its own assessment.",
+    "license": "CC BY 4.0 for this compilation (proposed; facts belong to the banks)",
+    "field_format": "Each field is {value, unit?, note, source, checked}. value null = not published or not found on the cited page."
+  },
+  "banks": [
+    {
+      "id": "bigbank",
+      "bank_name": "Bigbank",
+      "legal_name": "Bigbank AS",
+      "product_url_et": {
+        "value": "https://www.bigbank.ee/kodulaen/",
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": null,
+        "note": "No English home-loan page found (bigbank.ee/en/home-loan returns 404).",
+        "source": null,
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen (annuity schedule)",
+          "kodulaen erigraafikuga (interest-only start period)",
+          "refinancing"
+        ],
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "3, 6 or 12 month Euribor + individual margin; negative Euribor floored at 0",
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "No margin figure published; worked example states only the total rate 4.697% (margin + 6M Euribor).",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": null,
+        "note": "No rate promotion shown on 2026-11-09.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "0.4% of loan amount, min €150",
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Set by valuer; bank names partner Pindi Kinnisvara with -20% discount (code BIG20). Valuation by EKHÜ level 6/7 valuer required.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": null,
+        "note": "Not published on loan page; pre-contract sheet says amendments by agreement. Price list page not found (bigbank.ee/hinnakiri 404).",
+        "source": "https://static.bigbank.ee/assets/2026/02/02114022/Erakliendi_kodulaenu_kinnisvara_tagatisel_laenu_lepingueelne_teabeleht_EE_14_01_2026.pdf",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Full early repayment of variable-rate loan: 3 months' interest; none if bank notified at least 3 months ahead",
+        "note": null,
+        "source": "https://static.bigbank.ee/assets/2026/02/02114022/Erakliendi_kodulaenu_kinnisvara_tagatisel_laenu_lepingueelne_teabeleht_EE_14_01_2026.pdf",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 30000,
+        "note": "Smaller sums via 'kodu väikelaen'.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "10% with EIS guarantee; down to 0% with additional collateral. EIS not available with the special (erigraafik) schedule.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": "Derived from 15% minimum down payment.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 90,
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": null,
+        "note": "Bank page mentions the EIS (KredEx) housing loan guarantee without itemising target groups; EIS lists Bigbank among issuing banks.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": "EIS says the rural guarantee is offered by Coop Pank and Citadele only. Bigbank accepts the MES rural co-loan (kaaslaen) up to 50% of the need.",
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": null,
+        "note": "No energy-class discount published.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "None published beyond EIS.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 135200,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 307,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable (margin + 6M Euribor)",
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": null,
+          "note": "Not split out in the example.",
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": null,
+          "note": "Not stated.",
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": null,
+          "note": "Not stated.",
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 4.697,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 4.91,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 540.8,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": 762.54,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 234096.47,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 234096.47,
+          "note": "Bank states total payable equal to repayments total.",
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": null,
+          "note": "Undated. A second example for the interest-only schedule (€217,000, 316 months, 4.707%, APR 4.91%) is on the same tab.",
+          "source": "https://www.bigbank.ee/kodulaen/?tab=kodulaenu-kkk",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": "Regular official income in euros at least €600/month; two borrowers together at least €950/month; age 18+, Estonian residence address",
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": null,
+        "note": "Not stated on page; Eesti Pank rule caps all loan payments at 50% of net income (6% stress rate).",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application form on product page; bank then contacts applicant",
+        "note": null,
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": "Not stated.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "citadele",
+      "bank_name": "Citadele",
+      "legal_name": "AS Citadele banka Eesti filiaal",
+      "product_url_et": {
+        "value": "https://www.citadele.ee/et/private/mortgage/",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.citadele.ee/en/private/mortgage/",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "roheline kodulaen",
+          "kodu refinantseerimislaen",
+          "hüpoteeklaen (up to 75% LTV)",
+          "paindlik laen"
+        ],
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "Fixed margin + 6M Euribor (variable); fixed rate also offered",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 1.8%.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "€0 contract fee when buying new home directly from a developer (to 31.12.2026)",
+          "Families with 3+ children: €0 contract fee, valuation reimbursed up to €450 (applications 01.02–31.12.2026)",
+          "Refinancing: notary and valuation costs reimbursed up to €600 (applications to 31.12.2026)"
+        ],
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "Up to 1% of loan amount, min €200",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Set by valuer (bank publishes accepted valuers).",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "Other contract amendments 0.75% of balance, min €200; payment date/account change once a year free, then €75",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "3 months' interest; not applied with 3 months' notice",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": null,
+        "note": "Not published.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": null,
+        "note": "Standard down payment not stated; EIS: 10% (5% large families).",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": null,
+        "note": "Standard LTV not stated on page.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 95,
+        "note": "Up to 95% for large families with EIS; 90% for families with children, young specialists, energy-efficient homes.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": [
+          "young_family",
+          "young_specialist",
+          "energy_efficient",
+          "large_family",
+          "veteran",
+          "returned_dwelling_tenant",
+          "rural"
+        ],
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": true,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": "Better loan terms for A or B energy class homes (amount not published)",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "No age-based offer; family offer for 3+ children.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 120000,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 360,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.8,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.82,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": "2026-09-11",
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 4.62,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 4.79,
+          "note": "With €0 promotional fee. Same page gives APR 4.88% with a €1,200 fee (total €224,447.18).",
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 0,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": 622.15,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 223247.18,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 223247.18,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": "2026-09-11",
+          "note": "Date of Euribor used.",
+          "source": "https://www.citadele.ee/et/private/mortgage/",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": null,
+        "note": "No written minimum; the calculator accepts net income from €750/month.",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": null,
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online via Citadele internet bank; non-clients log in with Smart-ID or Mobile-ID",
+        "note": null,
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": "Some terms apply only if borrowers use Citadele as main bank (wording on page).",
+        "source": "https://www.citadele.ee/et/private/mortgage/",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "coop",
+      "bank_name": "Coop Pank",
+      "legal_name": "Coop Pank AS",
+      "product_url_et": {
+        "value": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.cooppank.ee/en/private/home/home-loan",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "õpetaja kodulaen",
+          "kodukaitsja kodulaen",
+          "ehituslaen",
+          "refinancing",
+          "kinnisvara tagatisel laen"
+        ],
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "Individual margin + 6M Euribor; fixing for a longer period possible",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 1.600%.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "A energy class: rate from 1.49% (as worded on page)"
+        ],
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "Up to 1% of loan amount, min €100 (construction loan min €350)",
+        "note": "Price list section valid from 16.03.2026.",
+        "source": "https://res30f.cooppank.ee/image/upload/dokumendid/est/hinnakiri_eraklient_0101.pdf",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Valuation by bank-accepted firm; fee set by valuer.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "Margin change up to 0.5% of balance, min €200; rate-type change 1.5%, min €350; payment holiday €75; other amendments from €200",
+        "note": null,
+        "source": "https://res30f.cooppank.ee/image/upload/dokumendid/est/hinnakiri_eraklient_0101.pdf",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Variable rate: 3 months' interest on amount repaid, none with 3 months' written notice; fixed rate: up to 1%",
+        "note": null,
+        "source": "https://res30f.cooppank.ee/image/upload/dokumendid/est/hinnakiri_eraklient_0101.pdf",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 10000,
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "Lower with EIS; MES co-loan accepted as down payment; additional collateral accepted.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": "Derived from 15% minimum down payment.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": null,
+        "note": "Not stated on page; EIS rule is 90% (95% large families).",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": null,
+        "note": "Page says 'teeme koostööd EISiga' without itemising target groups; EIS lists Coop among issuing banks.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": true,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": "A energy class: rate from 1.49%",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "None published; separate teacher and home-defence (kodukaitsja) loans exist.",
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 115000,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 360,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.6,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.706,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": "2026-08-01",
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 4.306,
+          "note": "Computed: margin + Euribor (bank does not state the sum).",
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 4.306,
+          "note": "Bank-stated APR. Equals the computed nominal rate — possible inconsistency in the bank's example (Open).",
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 100,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 205223.72,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 205324.25,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": "2026-08-01",
+          "note": "Date of Euribor used.",
+          "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": "Minimum net income €700/month; Estonian citizen or resident permit holder; age at loan end max 75; no active payment defaults",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": null,
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application; 'first offer within a minute'",
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": null,
+        "source": "https://www.cooppank.ee/eraklient/kodu/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "holm",
+      "bank_name": "Holm Bank",
+      "legal_name": "Holm Bank AS",
+      "product_url_et": {
+        "value": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.holmbank.ee/en/private-individual/loans/holm-home-loan",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen (purchase, build, extend, renovate; incl. summer house)",
+          "hüpoteeklaen"
+        ],
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "6M Euribor + personal margin; negative Euribor floored at 0",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 4%.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": null,
+        "note": "None shown.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "1% of loan amount, min €150",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Set by valuer; Lahe Kinnisvara gives Holm clients 10% off.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "1% of loan amount, min €150 (price list line 'contract conclusion and amendment')",
+        "note": "Price list valid from 09.03.2026.",
+        "source": "https://www.holmbank.ee/et/eraklient/hinnakiri",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "3 months' interest; not applied with 3 months' notice",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/hinnakiri",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 25000,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "10% with EIS; 0% with additional collateral.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 90,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": null,
+        "note": "Page refers to EIS terms without itemising target groups.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": null,
+        "note": "None published.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "None published.",
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 70000,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 300,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 4.0,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.244,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": "2025-04-11",
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 6.244,
+          "note": "Computed: margin + Euribor.",
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 6.63,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 700,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 139324.67,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 140024.67,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": "2025-04-11",
+          "note": "Euribor date is about 19 months old as of 2026-11-09.",
+          "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": "Regular income adequate in the bank's assessment; all loan payments max 50% of regular monthly income",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": 50,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Holm self-service (iseteenindus); valuation report needed before signing, not at application",
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": null,
+        "source": "https://www.holmbank.ee/et/eraklient/laenud/holm-kodulaen",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "lhv",
+      "bank_name": "LHV",
+      "legal_name": "AS LHV Pank",
+      "product_url_et": {
+        "value": "https://www.lhv.ee/et/kodulaen",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.lhv.ee/en/home-loan",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "noorte kodulaen (age ≤30)",
+          "üürikodu laen",
+          "koduvahetus",
+          "ehituse finantseerimine",
+          "refinancing",
+          "laen kodu ostuks välismaal"
+        ],
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "Individual margin + 6M Euribor",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 1.6%.",
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "New A/B energy class home: from 1.49% + 6M Euribor",
+          "Rental home loan: from 1.89% + 6M Euribor",
+          "Developer partner offers (e.g. Merko): €0 contract fee to 31.12.2026"
+        ],
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "0.5–0.9% of loan amount, min €300",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": "LHV internal valuation for apartments €150; expert valuation per valuer's price list",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "From €100",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Free (page: 'Laenu ennetähtaegne tagastamine tasuta'; contract termination free)",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 20000,
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "10% with EIS (KredEx); 5% for large families; calculator also requires at least €10,000.",
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 90,
+        "note": "95% for large families (5% down payment).",
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": "Up to 35 years for borrowers aged up to 30 at application.",
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": [
+          "young_family",
+          "young_specialist",
+          "energy_efficient",
+          "large_family",
+          "veteran"
+        ],
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": "New A/B energy class home: from 1.49% + 6M Euribor",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": "Noorte kodulaen (age ≤30): €0 contract fee, term up to 35 years, personal loan manager, may apply with a parent",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 170000,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 360,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.6,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": null,
+          "note": "Not stated; implied 3.0% (4.60 − 1.6).",
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": null,
+          "note": "Not stated.",
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 4.6,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 4.711,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 300,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 314016.63,
+          "note": "Bank calls it 'kogukulu'; treated as total payable.",
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": null,
+          "note": "Undated.",
+          "source": "https://www.lhv.ee/et/kodulaen",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": "Loan and leasing payments together up to 50% of net income; actual max depends on income and family size",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": 50,
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application; first offer within 24 hours; LHV account not required",
+        "note": null,
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": "Non-clients submit 6 months of digitally signed statements.",
+        "source": "https://www.lhv.ee/et/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "luminor",
+      "bank_name": "Luminor",
+      "legal_name": "Luminor Bank AS",
+      "product_url_et": {
+        "value": "https://luminor.ee/era/kodulaen",
+        "note": "JavaScript-rendered; read with a headless browser.",
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://luminor.ee/retail/mortgage-loan",
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "koduvahetuslaen",
+          "refinancing",
+          "maa ost ja maja ehitus",
+          "kinnisvara välismaal",
+          "ideelaen"
+        ],
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "Margin + 3, 6 or 12 month Euribor",
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Calculator footnote: bank margin on home loan 1.45% + 6M Euribor; worked example margin 1.45%.",
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "Black Friday: new loans from 1.30% + 3/6/12M Euribor and €0 contract fee, applications 30.10.2026–01.12.2026",
+          "Education workers: 1.39% + Euribor, €0 fee",
+          "Developer partner listings: lower fee, free valuation for many developments"
+        ],
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "1% of loan amount, min €100",
+        "note": "Price list valid from 01.10.2026. An older 2024 price list PDF is still online at a different URL.",
+        "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Set by valuer.",
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "Contract amendment €200 (complex up to 0.2% of balance); payment-difficulty amendment €100; payment date change free once a year, then €20",
+        "note": null,
+        "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Variable rate: free with at least 3 months' notice, otherwise up to 3 months' interest; fixed rate: formula",
+        "note": null,
+        "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 10000,
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "From 15%; with EIS from 10% (large families from 5%); can be replaced by additional collateral.",
+        "source": "https://luminor.ee/era/kodulaenu-uldinfo",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": "Luminor general info page: 'kuni 85% tagatise väärtusest'. No regional variation published; see regional_ltv_rules.",
+        "source": "https://luminor.ee/era/kodulaenu-uldinfo",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 95,
+        "note": "Luminor: 'EIS käendusel finantseerime kuni 90–95%, lisatagatisel kuni 100%'. 95% applies to the EIS large-family group; up to 100% only with additional collateral.",
+        "source": "https://luminor.ee/era/kodulaenu-uldinfo",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": {
+          "outside_harju_and_tartu_county": {
+            "max_ltv_pct": 80,
+            "max_ltv_with_eis_pct": 90
+          },
+          "harju_and_tartu_county": null
+        },
+        "note": "Reported by founder Sander Seppik on 2026-11-09. Not found on Luminor pages (era/kodulaen, era/kodulaenu-uldinfo, era/laenud-kodu-voi-muu-kinnisvara-ostmiseks, price list), comparison sites (hüpoteek.ee, intressid.ee, referent.ee) or news checked 2026-11-09; those state 85% without regional split. No public source found for a separate Harju/Tartu figure, so that value is left null.",
+        "source": "Information from a former member of Luminor's housing loan team (not publicly published by Luminor), 2026-11-09",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": [
+          "young_family",
+          "young_specialist",
+          "large_family",
+          "veteran",
+          "energy_efficient"
+        ],
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": "Final rate may depend on the property's energy class (no figure)",
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "None beyond EIS.",
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 145000,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 360,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.45,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.97,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": "2026-10-16",
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 4.42,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 4.629,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 1450,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 262014.25,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 263932.25,
+          "note": "Includes €1.30/month package fee.",
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": "2026-10-16",
+          "note": "Date of Euribor used.",
+          "source": "https://luminor.ee/era/kodulaen",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": null,
+        "note": "Not published.",
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": null,
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application for clients and non-clients; also PDF by e-mail; contracts signed digitally",
+        "note": null,
+        "source": "https://luminor.ee/era/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": "Current account at Luminor required (price list); package fee €1.30/month in example",
+        "note": null,
+        "source": "https://luminor.ee/s3fs-public/pricelists/pricelist_58_private_et-ee.pdf",
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "seb",
+      "bank_name": "SEB",
+      "legal_name": "AS SEB Pank",
+      "product_url_et": {
+        "value": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.seb.ee/en/private/loans/home-loan",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "roheline kodulaen",
+          "koduvahetuslaen",
+          "hüpoteeklaen"
+        ],
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "3, 6 or 12 month Euribor + client-specific margin; longer fixing possible",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 1.40%.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "A/B energy class purchase: from 1.35% + Euribor (applications 01.10–31.12.2026)",
+          "Refinancing A/B home over €100k: SEB pays notary fees (2026)"
+        ],
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "0.4% of loan amount, min €190",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Set by valuer.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "Up to 0.4% of balance, min €190; payment date/account change and principal holiday free",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Variable rate: max 3 months' interest, none with 3 months' notice; fixed rate: compensation per contract",
+        "note": "From pre-contract information on page.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 15000,
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "Lower with EIS; additional collateral accepted.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": "Derived; 60% if the property is not the borrower's home.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": null,
+        "note": "Not stated; EIS rule is 90%.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": [
+          "young_specialist",
+          "young_family",
+          "energy_efficient",
+          "large_family",
+          "veteran"
+        ],
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": "Works with MES (Maaelu Edendamise Sihtasutus).",
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": "A/B energy class: from 1.35% + Euribor (to 31.12.2026); 'roheline kodulaen' product",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": null,
+        "note": "None published beyond EIS.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 150000,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 312,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.4,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.114,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": null,
+          "note": "Not stated.",
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 3.514,
+          "note": "Computed: margin + Euribor.",
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 3.66,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 600,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 230295.34,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 230988.94,
+          "note": "Includes €0.30/month account fee.",
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": null,
+          "note": "Undated; 2.114% Euribor suggests an older example.",
+          "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": null,
+        "note": "Max payment depends on income, obligations and family size; no figure.",
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": null,
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application ('Esitan taotluse'); remote solutions and digital signing",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": "SEB current account required; bank may require all income to be paid into SEB",
+        "note": null,
+        "source": "https://www.seb.ee/eraklient/laenud/kodulaen",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    },
+    {
+      "id": "swedbank",
+      "bank_name": "Swedbank",
+      "legal_name": "Swedbank AS",
+      "product_url_et": {
+        "value": "https://www.swedbank.ee/private/credit/loans/home",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "product_url_en": {
+        "value": "https://www.swedbank.ee/private/credit/loans/home?language=ENG",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "loan_types": {
+        "value": [
+          "kodulaen",
+          "kodukapitalilaen",
+          "koduvahetus",
+          "refinancing",
+          "maja ehitus"
+        ],
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "rate_basis": {
+        "value": "Individual margin + 6M Euribor (variable), or 5-year fixed (5-year EUR swap + margin)",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "margin": {
+        "value": "individual",
+        "note": "Worked example margin 1.5%.",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "promo_rates": {
+        "value": [
+          "Refinancing balance over €100k: €0 contract fee and notary costs paid (applications to 31.12.2026)"
+        ],
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "contract_fee": {
+        "value": "0.3% of loan amount, min €190 (construction min €400)",
+        "note": "Price list valid from 31.08.2026. Young and gold clients: -30%.",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "valuation_fee": {
+        "value": null,
+        "note": "Independent valuer required; fee set by valuer.",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "amendment_fee": {
+        "value": "Contract amendment €190; principal payment holiday €95; payment date/account change free online; rate reduction 0.3% of balance, min €190",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "early_repayment_fee": {
+        "value": "Per contract terms (price list); the price list also shows '1 month's interest' next to early repayment via internet bank, which it says does not apply to fixed-rate loans",
+        "note": "Wording ambiguous; confirm in contract or pre-contract information.",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "min_loan_amount_eur": {
+        "value": 20000,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "min_down_payment_pct": {
+        "value": 15,
+        "note": "10% with EIS; 0% with additional property as collateral.",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_pct": {
+        "value": 85,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "max_ltv_with_eis_pct": {
+        "value": 90,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "max_term_years": {
+        "value": 30,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "eis_participation": {
+        "value": true,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "eis_programs": {
+        "value": [
+          "energy_efficient",
+          "young_family",
+          "large_family",
+          "veteran",
+          "young_specialist"
+        ],
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "eis_rural": {
+        "value": false,
+        "note": null,
+        "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+        "checked": "2026-11-09"
+      },
+      "green_discount": {
+        "value": null,
+        "note": "No energy-class rate discount published (EIS energy-efficient guarantee only).",
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "young_buyer_offer": {
+        "value": "Young clients: contract fee -30% (age limit not stated on page)",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "worked_example": {
+        "loan_amount_eur": {
+          "value": 145000,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "term_months": {
+          "value": 360,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "rate_type": {
+          "value": "variable",
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "margin_pct": {
+          "value": 1.5,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "euribor_pct": {
+          "value": 2.051,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "euribor_date": {
+          "value": "2025-07-09",
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "nominal_rate_pct": {
+          "value": 3.551,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "apr_pct": {
+          "value": 3.671,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "contract_fee_eur": {
+          "value": 190,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "monthly_payment_eur": {
+          "value": null,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "total_repayments_eur": {
+          "value": 237417.39,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "total_payable_eur": {
+          "value": 237607.39,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "total_cost_of_credit_eur": {
+          "value": 92607.39,
+          "note": null,
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        },
+        "example_date": {
+          "value": "2025-07-09",
+          "note": "Euribor date about 16 months old; current 6M Euribor is ~3.0%, so the example APR understates today's cost.",
+          "source": "https://www.swedbank.ee/private/credit/loans/home",
+          "checked": "2026-11-09"
+        }
+      },
+      "income_rules": {
+        "value": "Proven net income at least €1,000/month alone; €1,300 for two borrowers; €1,500 alone with 2+ dependants; all loan payments up to 50% of income",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "dsti_max_pct": {
+        "value": 50,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "digital_application": {
+        "value": "Online application; automatic first offer even before choosing a home",
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "account_requirement": {
+        "value": null,
+        "note": null,
+        "source": "https://www.swedbank.ee/private/credit/loans/home",
+        "checked": "2026-11-09"
+      },
+      "regional_ltv_rules": {
+        "value": null,
+        "note": "No regional LTV rule published or reported.",
+        "source": null,
+        "checked": "2026-11-09"
+      }
+    }
+  ]
+}

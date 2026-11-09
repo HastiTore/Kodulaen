@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "updated": "2026-11-09",
+    "note": "Official and reference context for the bank dataset. Values copied from the cited pages on the checked date."
+  },
+  "euribor_6m": {
+    "value_pct": 3.016,
+    "value_date": "2026-11-06",
+    "recent": [
+      {
+        "date": "2026-11-06",
+        "pct": 3.016
+      },
+      {
+        "date": "2026-11-05",
+        "pct": 3.014
+      },
+      {
+        "date": "2026-11-04",
+        "pct": 3.008
+      },
+      {
+        "date": "2026-11-03",
+        "pct": 3.006
+      },
+      {
+        "date": "2026-11-02",
+        "pct": 2.994
+      }
+    ],
+    "source": "https://www.euribor-rates.eu/en/current-euribor-rates/",
+    "source_type": "secondary (publishes EMMI rates with 24h delay)",
+    "administrator": "European Money Markets Institute (EMMI), https://www.emmi-benchmarks.eu/",
+    "cross_check": "Swedbank home-loan calculator showed 6M Euribor 3.016% on 2026-11-09 (https://www.swedbank.ee/private/credit/loans/home)",
+    "live_file": "data/euribor.json (refresh with fetch_euribor.py)",
+    "licensing_note": "Republishing Euribor values in a public dataset may require an EMMI licence. Open question; until resolved, the site may prefer linking to the source.",
+    "checked": "2026-11-09"
+  },
+  "eesti_pank_new_housing_loans": {
+    "description": "Estonia, MFI interest rate statistics (compiled by Eesti Pank, published via the ECB Data Portal)",
+    "avg_rate_new_business_pct": [
+      {
+        "month": "2026-07",
+        "pct": 4.25
+      },
+      {
+        "month": "2026-08",
+        "pct": 4.26
+      },
+      {
+        "month": "2026-09",
+        "pct": 4.45
+      }
+    ],
+    "avg_rate_new_business_series": "MIR.M.EE.B.A2C.A.R.A.2250.EUR.N (loans to households for house purchase, new business incl. renegotiations, all fixation periods)",
+    "avg_rate_variable_upto_1y_pct": [
+      {
+        "month": "2026-07",
+        "pct": 4.14
+      },
+      {
+        "month": "2026-08",
+        "pct": 4.16
+      },
+      {
+        "month": "2026-09",
+        "pct": 4.37
+      }
+    ],
+    "avg_rate_variable_series": "MIR.M.EE.B.A2C.F.R.A.2250.EUR.N",
+    "volume_pure_new_loans_eur_million": [
+      {
+        "month": "2026-07",
+        "value": 293
+      },
+      {
+        "month": "2026-08",
+        "value": 270
+      },
+      {
+        "month": "2026-09",
+        "value": 302
+      }
+    ],
+    "volume_series": "MIR.M.EE.B.A2C.A.B.A.2250.EUR.P (pure new loans, excludes renegotiations)",
+    "source": "https://data-api.ecb.europa.eu/service/data/MIR/M.EE.B.A2C.A.R.A.2250.EUR.N?lastNObservations=3",
+    "eesti_pank_stats_page": "https://statistika.eestipank.ee/et/p/FINANTSSEKTOR/147/979",
+    "next_release": "Eesti Pank Q3 2026 interest-rate statistics release on 2026-11-19 08:00 (per Eesti Pank press page); October bank statistics on 2026-11-25",
+    "checked": "2026-11-09"
+  },
+  "eesti_pank_lending_rules": {
+    "max_ltv_pct": 85,
+    "max_ltv_state_guaranteed_pct": 90,
+    "max_dsti_pct": 50,
+    "dsti_stress_rate": "higher of contract rate or 6% for variable-rate loans",
+    "max_term_years": 30,
+    "exception": "Each bank may issue up to 15% of quarterly new housing-loan volume outside these limits",
+    "in_force_since": "2015-03-01",
+    "source": "https://www.eestipank.ee/finantsstabiilsus/eluasemelaenude-valjastamise-nouded",
+    "checked": "2026-11-09"
+  },
+  "eis_housing_loan_guarantee": {
+    "how_to_apply": "Through the bank; no separate application to EIS",
+    "issuing_banks": [
+      "Bigbank",
+      "Citadele Pank",
+      "Coop Pank",
+      "Holm Bank",
+      "LHV Pank",
+      "Luminor",
+      "SEB Pank",
+      "Swedbank"
+    ],
+    "min_down_payment_pct": 10,
+    "min_down_payment_large_family_pct": 5,
+    "guarantee_size": "up to 24% of collateral value, max €20,000; energy-efficient group max €50,000; large families up to 40%, max €50,000",
+    "loan_amount_cap": "none",
+    "fee": "3% of guaranteed amount, one-off at signing; large families 2%",
+    "term_over_30y_conditions": "borrowers' age at loan end max 70 and property built or fully renovated within the last 10 years",
+    "no_other_home_rule": "Young family, young specialist, energy-efficient, tenant and veteran groups: borrower may not own a home at application, unless it is sold within 12 months",
+    "payment_holiday": "Loan holiday possible until a child turns 3",
+    "target_groups": {
+      "young_family": "Parent aged up to 35 with at least one child up to 16, or parent aged up to 40 with at least two children up to 16",
+      "young_specialist": "Aged up to 35 with higher, vocational secondary or professional education, employed (probation ended) or in office, or sole proprietor active at least 1 year",
+      "energy_efficient": "Buying an energy-efficient home or renovating to energy efficiency; proven by energy label or calculation",
+      "large_family": "At least three children up to 19",
+      "veteran": "Defence Forces or Defence League veteran (foreign mission or injured in service)",
+      "returned_dwelling_tenant": "Tenant in a dwelling returned under ownership reform"
+    },
+    "source": "https://eis.ee/teenused/eluasemelaenu-kaendus/",
+    "checked": "2026-11-09"
+  },
+  "eis_rural_housing_loan_guarantee": {
+    "banks": [
+      "Coop Pank",
+      "Citadele"
+    ],
+    "min_down_payment_pct": "15% of project value; 5% or 10% if borrower also belongs to another EIS target group",
+    "guarantee": "up to 80% of outstanding principal, max €150,000",
+    "loan_cap": "€200,000 and up to 95% of purchase/renovation cost",
+    "fee": "1% per year of guarantee balance, paid monthly",
+    "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
+    "checked": "2026-11-09"
+  }
+}

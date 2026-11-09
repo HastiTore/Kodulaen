@@ -150,7 +150,10 @@ def euribor_margin(lang):
         lead = (
             f"6 kuu Euribor on {S.fmt_pct(rate['rate_pct'], lang)}, väärtuspäev {rate['value_date']} "
             f"(euribor-rates.eu avaldab EMMI määra 24-tunnise viitega). Pankade avaldatud kodulaen on üldiselt "
-            f"individuaalne marginaal pluss Euribor. Ühist marginaali pangad ei avalda."
+            f"individuaalne marginaal pluss Euribor. Ühist marginaali pangad ei avalda. "
+            f"Kodulaenu samamäärane näide, mis ei ole panga pakkumine, kasutab kõigil pankadel {S.uniform_rate_label(lang)}, "
+            f"laenusummat {S.fmt_money(S.ILLUSTRATIVE['loan_amount_eur'], lang)} ja tähtaega {S.fmt_months(S.ILLUSTRATIVE['term_months'], lang)}. "
+            f"{S.uniform_assumption_note(lang)}"
         )
         headers = ["Pank", "Intressi alus", "Marginaal", "Näite marginaal"]
         caption = "Avaldatud intressi alus ja marginaal. Tähestikuline järjekord."
@@ -159,7 +162,10 @@ def euribor_margin(lang):
         lead = (
             f"6-month Euribor is {S.fmt_pct(rate['rate_pct'], lang)}, value date {rate['value_date']} "
             f"(euribor-rates.eu republishes the EMMI fixing with a 24-hour delay). The housing loans banks publish "
-            f"are generally an individual margin plus Euribor. The banks do not publish one shared margin."
+            f"are generally an individual margin plus Euribor. The banks do not publish one shared margin. "
+            f"Kodulaen's same-rate example, which is not a bank offer, uses {S.uniform_rate_label(lang)} for every bank, "
+            f"with a loan of {S.fmt_money(S.ILLUSTRATIVE['loan_amount_eur'], lang)} over {S.fmt_months(S.ILLUSTRATIVE['term_months'], lang)}. "
+            f"{S.uniform_assumption_note(lang)}"
         )
         headers = ["Bank", "Rate basis", "Margin", "Example margin"]
         caption = "Published rate basis and margin. Alphabetical order."
@@ -396,10 +402,10 @@ def compare_page(lang):
     year = S.TERMS_UPDATED[:4]
     if lang == "et":
         title = f"Eesti pankade kodulaenu tingimused kõrvuti ({year})"
-        lead = "Kaheksa panka on kõrvuti tähestikulises järjekorras. Madalam või kõrgem number ei ole soovitus. Iga lahtri juures on allikas ja kontrolli kuupäev."
+        lead = "Kaheksa panka on kõrvuti tähestikulises järjekorras. Madalam või kõrgem number ei ole soovitus. Iga lahtri juures on allikas ja kontrolli kuupäev. Panga tüüpnäite intress ja KKM on panga avaldatud arvud. Samamäärane kuumakse on Kodulaenu illustratsioon samal intressil, mitte panga pakkumine."
     else:
         title = f"Estonian housing-loan terms side by side ({year})"
-        lead = "Eight banks are side by side in alphabetical order. A lower or higher number is not a recommendation. Every cell has a source and a check date."
+        lead = "Eight banks are side by side in alphabetical order. A lower or higher number is not a recommendation. Every cell has a source and a check date. The example rate and APR are the bank's published figures. The same-rate payment is Kodulaen's illustration at one shared rate, not a bank offer."
     body = (
         S.crumbs_html(lang, [("Kodulaen", S.url_for(lang, "")), (title, None)])
         + f"<h1>{S.esc(title)}</h1><p class=\"lead\">{S.esc(lead)}</p>"

@@ -13,8 +13,8 @@
     },
     {
       "date": "2026-11-09",
-      "et": "Bigbanki LTV reeglid on lisatud tööstusharu siseteabena (Sander Seppik, endine Bigbanki eluasemelaenu tiimi liige; Bigbanki lehel avaldamata): tavaline maksimum on tavaliselt 85%; piirkond tavaliselt LTV-d ei muuda; vara seisukord võib LTV-d alandada; ehituslaen algab tavaliselt 50%-st maatüki väärtusest, tõuseb 70%-ni kui hoone on kinni, ja 85%-ni kui hoone on 95% valmis.",
-      "en": "Bigbank LTV rules were added as industry insider information (Sander Seppik, a former member of Bigbank's housing loan team; not published on Bigbank's website): the usual maximum is usually 85%; region usually does not change the LTV; the condition of the property can lower the LTV; a construction loan starts at usually 50% of the land plot's value, rises to 70% when the building is closed, and to 85% when the building is 95% complete."
+      "et": "Kodulaenu samamäärane näide lisati iga panga juurde. Panga avaldatud tüüpnäite arve ei muudetud. Illustratsioon kasutab kõigil pankadel sama intressi: oletatud marginaal 2,0% + tänane 6 kuu Euribor, laenusumma 100 000 €, tähtaeg 360 kuud, annuiteet. Kuumakse ei sisalda lepingutasu; panga avaldatud lepingutasu võib erineda. Marginaal 2,0% ei ole panga tingimus.",
+      "en": "A same-rate Kodulaen example was added beside each bank. The worked-example figures published by the banks were not changed. The illustration uses one rate for every bank: an assumed 2.0% margin plus today's 6-month Euribor, a loan of €100,000, a term of 360 months, and an annuity. The payment excludes the contract fee; the bank's published contract fee may differ. The 2.0% margin is not a bank term."
     }
   ]
 }

@@ -2451,6 +2451,20 @@ def write_markdown_twins() -> None:
         write(dest, html_to_markdown(document))
 
 
+def copy_verify_files() -> None:
+    """Serve search-engine ownership files from the site root.
+
+    Google Search Console and Bing Webmaster Tools each hand over an HTML file
+    that must answer at the top of the deployed path. These are not pages, so
+    they are copied after validate() rather than being checked as content.
+    """
+    verify = ROOT / "verify"
+    if not verify.is_dir():
+        return
+    for path in sorted(verify.glob("*.html")):
+        shutil.copy(path, DIST / path.name)
+
+
 def main() -> None:
     for key, value in UI.items():
         if set(value) != {"et", "en"}:
@@ -2476,6 +2490,7 @@ def main() -> None:
     key = (ROOT / "indexnow.txt").read_text(encoding="utf-8").strip()
     write(DIST / f"{key}.txt", key + "\n")
     validate()
+    copy_verify_files()
 
 
 if __name__ == "__main__":

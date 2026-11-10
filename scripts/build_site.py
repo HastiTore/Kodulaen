@@ -1021,6 +1021,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
 <title>{esc(full_title)}</title>
 <meta name="description" content="{esc(description)}">
 <meta name="robots" content="index, follow">
+{verify_meta()}
 <meta property="og:title" content="{esc(full_title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="website">
@@ -2232,6 +2233,12 @@ def validate() -> None:
     html_files = list(DIST.rglob("*.html"))
     if len(html_files) < 25:
         errors.append(f"Too few HTML files: {len(html_files)}")
+    home = DIST / "index.html"
+    if home.is_file() and verify_meta():
+        home_text = home.read_text(encoding="utf-8")
+        for tag in verify_meta().splitlines():
+            if tag and tag not in home_text:
+                errors.append("Ownership meta tag missing from the homepage: " + tag)
     banned = re.compile(r"\b(best bank|parim pank|soovitame|you qualify|unverified|kinnitamata|affiliate)\b", re.I)
     illustration_count = 0
     for path in html_files:
@@ -2463,6 +2470,15 @@ def copy_verify_files() -> None:
         return
     for path in sorted(verify.glob("*.html")):
         shutil.copy(path, DIST / path.name)
+
+
+def verify_meta() -> str:
+    """Ownership meta tags from verify/meta-tags.txt, one tag per line."""
+    path = ROOT / "verify" / "meta-tags.txt"
+    if not path.is_file():
+        return ""
+    tags = [line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return "\n".join(tags) + ("\n" if tags else "")
 
 
 def main() -> None:

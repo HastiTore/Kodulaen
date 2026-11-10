@@ -2,7 +2,7 @@
   "meta": {
     "dataset": "Estonian bank housing-loan terms (published information)",
     "version": "0.1.0",
-    "updated": "2026-11-09",
+    "updated": "2026-11-10",
     "language_of_source_pages": "et",
     "ordering": "alphabetical by bank_name; ordering carries no meaning",
     "neutrality": "Published terms only. No ranking, scoring or recommendation. Not financial advice. Each bank decides on its own assessment.",
@@ -155,10 +155,17 @@
         "checked": "2026-11-09"
       },
       "eis_programs": {
-        "value": null,
-        "note": "Bank page mentions the EIS (KredEx) housing loan guarantee without itemising target groups; EIS lists Bigbank among issuing banks.",
-        "source": "https://www.bigbank.ee/kodulaen/",
-        "checked": "2026-11-09"
+        "value": [
+          "young_family",
+          "young_specialist",
+          "energy_efficient",
+          "large_family",
+          "veteran",
+          "returned_dwelling_tenant"
+        ],
+        "note": "Bigbank's own page describes the EIS (KredEx) guarantee without itemising target groups. EIS lists Bigbank among the banks offering the guarantee, which covers these target groups. The rural guarantee is a separate product.",
+        "source": "https://eis.ee/teenused/eluasemelaenu-kaendus/",
+        "checked": "2026-11-10"
       },
       "eis_rural": {
         "value": false,

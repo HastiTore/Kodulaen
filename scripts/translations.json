@@ -177,7 +177,6 @@
   "Minimum net income €700/month; Estonian citizen or resident permit holder; age at loan end max 75; no active payment defaults": "Minimaalne netosissetulek 700 € kuus; Eesti kodanik või elamisloaga isik; vanus laenu lõpus kuni 75; kehtivaid maksehäireid ei ole",
   "Margin change up to 0.5% of balance, min €200; rate-type change 1.5%, min €350; payment holiday €75; other amendments from €200": "Marginaali muutmine kuni 0,5% jäägist, min 200 €; intressitüübi muutmine 1,5%, min 350 €; maksepuhkus 75 €; muud muudatused alates 200 €",
   "Set by valuer; bank names partner Pindi Kinnisvara with -20% discount (code BIG20). Valuation by EKHÜ level 6/7 valuer required.": "Tasu määrab hindaja; pank nimetab partnerina Pindi Kinnisvara −20% soodustusega (kood BIG20). Nõutav on EKHÜ 6. või 7. taseme hindaja.",
-  "Bank page mentions the EIS (KredEx) housing loan guarantee without itemising target groups; EIS lists Bigbank among issuing banks.": "Panga leht nimetab EIS-i (KredExi) eluasemelaenu käendust sihtrühmi loetlemata; EIS nimetab Bigbanki väljastavate pankade hulgas.",
   "Not published on loan page; pre-contract sheet says amendments by agreement. Price list page not found (bigbank.ee/hinnakiri 404).": "Laenulehel avaldamata; lepingueelne teabeleht ütleb, et muudatused lepitakse kokku. Hinnakirja lehte ei leitud (bigbank.ee/hinnakiri 404).",
   "Regular official income in euros at least €600/month; two borrowers together at least €950/month; age 18+, Estonian residence address": "Regulaarne ametlik euro sissetulek vähemalt 600 € kuus; kaks laenuvõtjat kokku vähemalt 950 € kuus; vanus 18+, elukoht Eestis",
   "Contract amendment €190; principal payment holiday €95; payment date/account change free online; rate reduction 0.3% of balance, min €190": "Lepingu muutmine 190 €; põhiosa maksepuhkus 95 €; maksepäeva või konto muutmine veebis tasuta; intressi alandamine 0,3% jäägist, min 190 €",
@@ -213,5 +212,6 @@
   "€200,000 and up to 95% of purchase/renovation cost": "200 000 € ja kuni 95% ostu- või renoveerimismaksumusest",
   "1% per year of guarantee balance, paid monthly": "1% aastas käenduse jäägilt, makstakse iga kuu",
   "European Money Markets Institute (EMMI), https://www.emmi-benchmarks.eu/": "European Money Markets Institute (EMMI), https://www.emmi-benchmarks.eu/",
-  "data/euribor.json (refresh with fetch_euribor.py)": "data/euribor.json (uuenda käsuga fetch_euribor.py)"
+  "data/euribor.json (refresh with fetch_euribor.py)": "data/euribor.json (uuenda käsuga fetch_euribor.py)",
+  "Bigbank's own page describes the EIS (KredEx) guarantee without itemising target groups. EIS lists Bigbank among the banks offering the guarantee, which covers these target groups. The rural guarantee is a separate product.": "Bigbanki enda leht kirjeldab EIS-i (endise KredExi) käendust sihtrühmi loetlemata. EIS nimetab Bigbanki käendust pakkuvate pankade hulgas ja käendus katab need sihtrühmad. Maapiirkonna käendus on eraldi toode."
 }

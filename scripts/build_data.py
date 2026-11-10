@@ -2,12 +2,12 @@ import json, csv, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 D = "2026-11-09"
 BIGBANK_INSIDER = "Information from Sander Seppik, a former member of Bigbank's housing loan team (insider information, not published on Bigbank's website), 2026-11-09"
-def F(value, source, note=None, unit=None):
+def F(value, source, note=None, unit=None, checked=None):
     d = {"value": value}
     if unit: d["unit"] = unit
     d["note"] = note
     d["source"] = source
-    d["checked"] = D
+    d["checked"] = checked or D
     return d
 EIS_PAGE = "https://eis.ee/teenused/eluasemelaenu-kaendus/"
 EIS_RURAL = "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/"
@@ -43,7 +43,7 @@ banks.append(dict(
    ], BIGBANK_INSIDER, "Construction loan (ehituslaen). LTV starts at usually 50% of the value of the land plot; once the building is closed (walls, roof, windows and doors installed) the LTV increases to 70%; once the building is 95% complete the LTV increases to 85%."),
  max_term_years=F(30, P),
  eis_participation=F(True, P),
- eis_programs=F(None, P, "Bank page mentions the EIS (KredEx) housing loan guarantee without itemising target groups; EIS lists Bigbank among issuing banks."),
+ eis_programs=F(["young_family", "young_specialist", "energy_efficient", "large_family", "veteran", "returned_dwelling_tenant"], EIS_PAGE, "Bigbank's own page describes the EIS (KredEx) guarantee without itemising target groups. EIS lists Bigbank among the banks offering the guarantee, which covers these target groups. The rural guarantee is a separate product.", checked="2026-11-10"),
  eis_rural=F(False, EIS_RURAL, "EIS says the rural guarantee is offered by Coop Pank and Citadele only. Bigbank accepts the MES rural co-loan (kaaslaen) up to 50% of the need."),
  green_discount=F(None, P, "No energy-class discount published."),
  young_buyer_offer=F(None, P, "None published beyond EIS."),
@@ -305,7 +305,7 @@ banks.sort(key=lambda b: b["bank_name"].lower())
 
 meta = {
  "dataset": "Estonian bank housing-loan terms (published information)",
- "version": "0.1.0", "updated": D, "language_of_source_pages": "et",
+ "version": "0.1.0", "updated": "2026-11-10", "language_of_source_pages": "et",
  "ordering": "alphabetical by bank_name; ordering carries no meaning",
  "neutrality": "Published terms only. No ranking, scoring or recommendation. Not financial advice. Each bank decides on its own assessment.",
  "license": "CC BY 4.0 for this compilation (proposed; facts belong to the banks)",

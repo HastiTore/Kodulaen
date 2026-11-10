@@ -1085,7 +1085,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
   </div>
 </footer>
 {scripts}
-<script data-goatcounter="https://kodulaen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://hastitore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
 """
@@ -2281,7 +2281,7 @@ def validate() -> None:
                 errors.append(f"Broken link {href} in {path}")
     if illustration_count != 16:
         errors.append(f"Expected 16 illustration sections, found {illustration_count}")
-    snippet = '<script data-goatcounter="https://kodulaen.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+    snippet = '<script data-goatcounter="https://hastitore.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
     missing_counter = [path for path in html_files if snippet not in path.read_text(encoding="utf-8")]
     if missing_counter:
         errors.append("GoatCounter snippet missing from " + ", ".join(str(path) for path in missing_counter))

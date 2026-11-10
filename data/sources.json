@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-11-09",
+    "updated": "2026-11-10",
     "note": "Official and reference context for the bank dataset. Values copied from the cited pages on the checked date."
   },
   "euribor_6m": {
@@ -34,11 +34,59 @@
     "cross_check": "Swedbank home-loan calculator showed 6M Euribor 3.016% on 2026-11-09 (https://www.swedbank.ee/private/credit/loans/home)",
     "live_file": "data/euribor.json (refresh with fetch_euribor.py)",
     "licensing_note": "Republishing Euribor values in a public dataset may require an EMMI licence. Open question; until resolved, the site may prefer linking to the source.",
-    "checked": "2026-11-09"
+    "checked": "2026-11-10"
   },
   "eesti_pank_new_housing_loans": {
     "description": "Estonia, MFI interest rate statistics (compiled by Eesti Pank, published via the ECB Data Portal)",
     "avg_rate_new_business_pct": [
+      {
+        "month": "2025-07",
+        "pct": 3.79
+      },
+      {
+        "month": "2025-08",
+        "pct": 3.78
+      },
+      {
+        "month": "2025-09",
+        "pct": 3.75
+      },
+      {
+        "month": "2025-10",
+        "pct": 3.75
+      },
+      {
+        "month": "2025-11",
+        "pct": 3.76
+      },
+      {
+        "month": "2025-12",
+        "pct": 3.73
+      },
+      {
+        "month": "2026-01",
+        "pct": 3.8
+      },
+      {
+        "month": "2026-02",
+        "pct": 3.77
+      },
+      {
+        "month": "2026-03",
+        "pct": 3.88
+      },
+      {
+        "month": "2026-04",
+        "pct": 4.05
+      },
+      {
+        "month": "2026-05",
+        "pct": 4.12
+      },
+      {
+        "month": "2026-06",
+        "pct": 4.14
+      },
       {
         "month": "2026-07",
         "pct": 4.25
@@ -54,6 +102,54 @@
     ],
     "avg_rate_new_business_series": "MIR.M.EE.B.A2C.A.R.A.2250.EUR.N (loans to households for house purchase, new business incl. renegotiations, all fixation periods)",
     "avg_rate_variable_upto_1y_pct": [
+      {
+        "month": "2025-07",
+        "pct": 3.68
+      },
+      {
+        "month": "2025-08",
+        "pct": 3.69
+      },
+      {
+        "month": "2025-09",
+        "pct": 3.67
+      },
+      {
+        "month": "2025-10",
+        "pct": 3.67
+      },
+      {
+        "month": "2025-11",
+        "pct": 3.69
+      },
+      {
+        "month": "2025-12",
+        "pct": 3.67
+      },
+      {
+        "month": "2026-01",
+        "pct": 3.68
+      },
+      {
+        "month": "2026-02",
+        "pct": 3.69
+      },
+      {
+        "month": "2026-03",
+        "pct": 3.8
+      },
+      {
+        "month": "2026-04",
+        "pct": 3.93
+      },
+      {
+        "month": "2026-05",
+        "pct": 4.02
+      },
+      {
+        "month": "2026-06",
+        "pct": 4.06
+      },
       {
         "month": "2026-07",
         "pct": 4.14
@@ -83,10 +179,10 @@
       }
     ],
     "volume_series": "MIR.M.EE.B.A2C.A.B.A.2250.EUR.P (pure new loans, excludes renegotiations)",
-    "source": "https://data-api.ecb.europa.eu/service/data/MIR/M.EE.B.A2C.A.R.A.2250.EUR.N?lastNObservations=3",
+    "source": "https://data-api.ecb.europa.eu/service/data/MIR/M.EE.B.A2C.A.R.A.2250.EUR.N?lastNObservations=15",
     "eesti_pank_stats_page": "https://statistika.eestipank.ee/et/p/FINANTSSEKTOR/147/979",
     "next_release": "Eesti Pank Q3 2026 interest-rate statistics release on 2026-11-19 08:00 (per Eesti Pank press page); October bank statistics on 2026-11-25",
-    "checked": "2026-11-09"
+    "checked": "2026-11-10"
   },
   "eesti_pank_lending_rules": {
     "max_ltv_pct": 85,
@@ -97,7 +193,7 @@
     "exception": "Each bank may issue up to 15% of quarterly new housing-loan volume outside these limits",
     "in_force_since": "2015-03-01",
     "source": "https://www.eestipank.ee/finantsstabiilsus/eluasemelaenude-valjastamise-nouded",
-    "checked": "2026-11-09"
+    "checked": "2026-11-10"
   },
   "eis_housing_loan_guarantee": {
     "how_to_apply": "Through the bank; no separate application to EIS",
@@ -128,7 +224,7 @@
       "returned_dwelling_tenant": "Tenant in a dwelling returned under ownership reform"
     },
     "source": "https://eis.ee/teenused/eluasemelaenu-kaendus/",
-    "checked": "2026-11-09"
+    "checked": "2026-11-10"
   },
   "eis_rural_housing_loan_guarantee": {
     "banks": [
@@ -140,6 +236,6 @@
     "loan_cap": "€200,000 and up to 95% of purchase/renovation cost",
     "fee": "1% per year of guarantee balance, paid monthly",
     "source": "https://eis.ee/teenused/maapiirkonna-eluasemelaenu-kaendus/",
-    "checked": "2026-11-09"
+    "checked": "2026-11-10"
   }
 }

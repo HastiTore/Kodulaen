@@ -114,6 +114,7 @@ UI = {
     "nav_home": {"et": "Ülevaade", "en": "Overview"},
     "nav_rules": {"et": "Eesti Pank ja EIS", "en": "Eesti Pank and EIS"},
     "nav_euribor": {"et": "Euribor", "en": "Euribor"},
+    "nav_market": {"et": "Keskmine intress", "en": "Average rate"},
     "nav_about": {"et": "Meetod ja hoiatus", "en": "Method and disclaimer"},
     "nav_questions": {"et": "Küsimused", "en": "Questions"},
     "nav_compare": {"et": "Kõrvutus", "en": "Side by side"},
@@ -457,6 +458,91 @@ UI = {
         "et": "Kodulaenu annuiteedi illustratsioon. See ei ole panga maksegraafik ega pakkumine.",
         "en": "Kodulaen annuity illustration. This is not the bank’s schedule or offer.",
     },
+    "market_h1": {
+        "et": "Keskmine kodulaenu intress Eestis",
+        "en": "Average housing-loan interest rate in Estonia",
+    },
+    "market_lead": {
+        "et": "{month} oli Eesti Panga andmetel uute eluasemelaenude keskmine intress {latest}. Aasta varem samal kuul oli see {prior}. Keskmine hõlmab kõiki fikseerimisperioode ega ole ühegi panga marginaal ega pakkumine.",
+        "en": "In {month}, Eesti Pank data put the average interest rate on new housing loans at {latest}. A year earlier it was {prior}. The average covers all fixation periods and is not any bank’s margin or offer.",
+    },
+    "market_desc": {
+        "et": "Eesti Panga andmed: uute eluasemelaenude keskmine intress oli {latest} ({month}), aasta varem {prior}. Kuuandmed, marginaali ja Euribori vahe ning kulu 100 000 € laenul.",
+        "en": "Eesti Pank data: the average rate on new housing loans was {latest} in {month}, against {prior} a year earlier. Monthly figures, the margin–Euribor gap, and the cost on a €100,000 loan.",
+    },
+    "market_trend_title": {"et": "Keskmine intress kuude kaupa", "en": "Average rate by month"},
+    "market_trend_note": {
+        "et": "Read on uus äri: uued ja refinantseeritud laenud kokku. „Ujuv kuni 1 aasta“ tähendab, et intress on fikseeritud kuni aastaks. Keskmine ei ole pankade võrdluse siht.",
+        "en": "The rows are new business: new and renegotiated loans together. “Variable up to 1 year” means the rate is fixed for up to a year. The average is not a target for comparing banks.",
+    },
+    "market_col_avg": {"et": "Keskmine intress", "en": "Average rate"},
+    "market_col_var": {"et": "Ujuv kuni 1 aasta", "en": "Variable up to 1 year"},
+    "market_volume_note": {
+        "et": "Uute laenude maht ilma refinantseerimiseta: {jul} mln € juulis, {aug} mln € augustis ja {sep} mln € septembris.",
+        "en": "Pure new lending, excluding renegotiations: €{jul}m in July, €{aug}m in August and €{sep}m in September.",
+    },
+    "market_margin_title": {"et": "Marginaal ja Euribor", "en": "Margin and Euribor"},
+    "market_margin_note": {
+        "et": "Pangad avaldavad kodulaenu intressi kujul „individuaalne marginaal + 6 kuu Euribor“. 6 kuu Euribor oli {date} seisuga {euribor}. Kui lahutada see {latest} keskmisest, jääb {diff} protsendipunkti.",
+        "en": "Banks publish the housing-loan rate as “an individual margin plus 6-month Euribor”. On {date} the 6-month Euribor was {euribor}. Subtracting it from the {latest} average leaves {diff} percentage points.",
+    },
+    "market_margin_caveat": {
+        "et": "See vahe on aritmeetika, mitte avaldatud marginaal. Keskmine sisaldab ka fikseeritud intressiga laene ja eri Euribori tähtaegu, seega tegelik keskmine marginaal erineb. Pankade avaldatud marginaalid on individuaalsed.",
+        "en": "That difference is arithmetic, not a published margin. The average also includes fixed-rate loans and different Euribor tenors, so the real average margin differs. The margins banks publish are individual.",
+    },
+    "market_tenth_title": {"et": "Mida 0,1 protsendipunkt maksab", "en": "What 0.1 percentage point costs"},
+    "market_tenth_text": {
+        "et": "100 000 € laenul 25 aastaks (300 kuud, annuiteet) maksab 0,1 protsendipunkti intressi {monthly} kuus ja {total} kogu tähtaja jooksul. Arvutus kasutab Kodulaenu annuiteedivalemit ega sisalda tasusid.",
+        "en": "On a €100,000 loan for 25 years (300 months, annuity), 0.1 percentage point of interest costs {monthly} a month and {total} over the full term. The calculation uses Kodulaen’s annuity formula and excludes fees.",
+    },
+    "market_cost_title": {"et": "Kogukulu 100 000 € laenul", "en": "Total cost on a €100,000 loan"},
+    "market_cost_note": {
+        "et": "Sama summa ja tähtaeg, igakuine annuiteetmakse. Intressimäärad on valitud näitlikult ümber septembri keskmise. Arvutus ei sisalda lepingutasu, kindlustust ega muid tasusid; panga maksegraafik võib erineda.",
+        "en": "Same amount and term, monthly annuity payment. The rates are illustrative, chosen around the September average. The calculation excludes the contract fee, insurance and other charges; the bank’s schedule may differ.",
+    },
+    "market_col_rate": {"et": "Intress", "en": "Rate"},
+    "market_col_payment": {"et": "Kuumakse", "en": "Monthly payment"},
+    "market_col_total": {"et": "Kokku tagasi maksta", "en": "Total repaid"},
+    "market_col_extra": {"et": "Vahe madalaimaga", "en": "Difference from lowest"},
+    "market_cost_caveat": {
+        "et": "Tabel on arvutus, mitte panga pakkumine. Tegeliku intressi määrab pank igale kliendile eraldi.",
+        "en": "The table is a calculation, not a bank offer. The actual rate is set by the bank for each borrower.",
+    },
+    "market_why_title": {"et": "Miks siin ei ole „head marginaali“", "en": "Why there is no “good margin” here"},
+    "market_why_text": {
+        "et": "Pangad ei avalda, millise marginaali nad kliendile andsid. Avalikku allikat selle kohta ei ole, seega Kodulaen ei ütle, mis marginaal on hea või halb. Keskmine intress on ainus avalik võrdlusalus, aga ka see ei ütle, kas konkreetne pakkumine on Sinu jaoks mõistlik.",
+        "en": "Banks do not publish the margin they gave a borrower. No public source exists for it, so Kodulaen does not say what margin is good or bad. The average rate is the only public reference point, and even it does not tell you whether a particular offer is reasonable for you.",
+    },
+    "market_source_title": {"et": "Allikas ja värskus", "en": "Source and freshness"},
+    "market_source_text": {
+        "et": "Read on Eesti Panga koostatud rahaloomeasutuste intressistatistikast, mille avaldab Euroopa Keskpanga andmeportaal. Seeria {series}. Kontrollitud {checked}.",
+        "en": "The rows come from the MFI interest-rate statistics compiled by Eesti Pank and published through the European Central Bank data portal. Series {series}. Checked {checked}.",
+    },
+    "market_link_from_rules": {
+        "et": "Keskmine intress ja kulu 100 000 € laenul",
+        "en": "Average rate and the cost on a €100,000 loan",
+    },
+    "market_also_title": {"et": "Vaata ka", "en": "See also"},
+    "market_link_from_euribor": {
+        "et": "Keskmine kodulaenu intress Eestis",
+        "en": "Average housing-loan rate in Estonia",
+    },
+    "market_faq_q1": {
+        "et": "Kui suur on keskmine kodulaenu intress Eestis?",
+        "en": "What is the average housing-loan interest rate in Estonia?",
+    },
+    "market_faq_a1": {
+        "et": "{month} oli uute eluasemelaenude keskmine intress Eesti Panga andmetel {latest}. Aasta varem oli see {prior}.",
+        "en": "In {month}, the average interest rate on new housing loans was {latest} according to Eesti Pank. A year earlier it was {prior}.",
+    },
+    "market_faq_q2": {
+        "et": "Kas keskmine intress on panga marginaal?",
+        "en": "Is the average rate a bank’s margin?",
+    },
+    "market_faq_a2": {
+        "et": "Ei. Keskmine sisaldab kõiki fikseerimisperioode ja ka refinantseeritud laene. Panga marginaal on individuaalne ega ole avalik.",
+        "en": "No. The average covers all fixation periods and renegotiated loans too. A bank’s margin is individual and not public.",
+    },
 }
 
 
@@ -557,6 +643,31 @@ def fmt_years(number, lang: str) -> str:
     if lang == "et":
         return f"{int(number)} aastat"
     return f"{int(number)} years"
+
+
+ET_MONTHS = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni",
+             "juuli", "august", "september", "oktoober", "november", "detsember"]
+ET_MONTHS_IN = ["jaanuaris", "veebruaris", "märtsis", "aprillis", "mais", "juunis",
+                "juulis", "augustis", "septembris", "oktoobris", "novembris", "detsembris"]
+EN_MONTHS = ["January", "February", "March", "April", "May", "June",
+             "July", "August", "September", "October", "November", "December"]
+
+
+def month_label(month: str, lang: str) -> str:
+    """'2026-09' -> '2026. aasta septembris' (et) / 'September 2026' (en)."""
+    year, number = month.split("-")
+    index = int(number) - 1
+    if lang == "et":
+        return f"{year}. aasta {ET_MONTHS_IN[index]}"
+    return f"{EN_MONTHS[index]} {year}"
+
+
+def month_short(month: str, lang: str) -> str:
+    """'2026-09' -> 'sept 2026' (et) / 'Sep 2026' (en)."""
+    year, number = month.split("-")
+    index = int(number) - 1
+    name = ET_MONTHS[index] if lang == "et" else EN_MONTHS[index][:3]
+    return f"{name} {year}"
 
 
 def annuity(principal, annual_pct, months) -> Decimal:
@@ -993,6 +1104,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
         ("kusimused" if lang == "et" else "questions", T(lang, "nav_questions"), "questions"),
         ("reeglid" if lang == "et" else "rules", T(lang, "nav_rules"), "rules"),
         ("euribor", T(lang, "nav_euribor"), "euribor"),
+        ("turg" if lang == "et" else "market", T(lang, "nav_market"), "market"),
         ("muudatused" if lang == "et" else "changes", T(lang, "nav_changes"), "changes"),
         ("meist" if lang == "et" else "about", T(lang, "nav_about"), "about"),
     ]
@@ -1262,11 +1374,12 @@ def home_body(lang: str) -> str:
     questions = "kusimused" if lang == "et" else "questions"
     compare = "vorlus" if lang == "et" else "compare"
     changes = "muudatused" if lang == "et" else "changes"
+    market = "turg" if lang == "et" else "market"
     return f"""
 {euribor_strip(lang)}
 <h1>{esc(T(lang, "home_h1"))}</h1>
 <p class="lead">{esc(T(lang, "home_lead"))}</p>
-<p><a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a> · <a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a> · <a href="{esc(url_for(lang, changes))}">{esc(T(lang, "nav_changes"))}</a></p>
+<p><a href="{esc(url_for(lang, market))}">{esc(T(lang, "nav_market"))}</a> · <a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a> · <a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a> · <a href="{esc(url_for(lang, changes))}">{esc(T(lang, "nav_changes"))}</a></p>
 <section aria-labelledby="how">
   <h2 id="how">{esc(T(lang, "home_read_title"))}</h2>
   <ul>
@@ -1564,6 +1677,7 @@ def rules_body(lang: str) -> str:
         + f'<p class="small"><code>{esc(stats["volume_series"])}</code></p>'
         + f'<h3>{esc(T(lang, "stats_next"))}</h3><p>{esc(tr(stats["next_release"], lang))}</p>'
         + f'<p class="prov"><a href="{esc(stats["source"])}">{esc(T(lang, "source"))}</a> · <a href="{esc(stats["eesti_pank_stats_page"])}">Eesti Pank</a> <time datetime="{esc(stats["checked"])}">{esc(stats["checked"])}</time></p>'
+        + f'<p><a href="{esc(url_for(lang, "turg" if lang == "et" else "market"))}">{esc(T(lang, "market_link_from_rules"))}</a></p>'
     )
 
 
@@ -1639,7 +1753,203 @@ def euribor_body(lang: str) -> str:
         + f'<p class="prov"><a href="{esc(history["source"])}">{esc(T(lang, "source"))}</a> <time datetime="{esc(history["checked"])}">{esc(history["checked"])}</time></p>'
         + f'<h2>{esc(T(lang, "cross_title"))}</h2>'
         + f'<p>{esc(tr(history["cross_check"], lang))}</p>'
+        + f'<p><a href="{esc(url_for(lang, "turg" if lang == "et" else "market"))}">{esc(T(lang, "market_link_from_euribor"))}</a></p>'
     )
+
+
+def market_numbers(lang: str) -> dict:
+    """The computed pieces the market page and its answers share."""
+    stats = SOURCES["eesti_pank_new_housing_loans"]
+    avg = stats["avg_rate_new_business_pct"]
+    latest = avg[-1]
+    year_ago_month = str(int(latest["month"][:4]) - 1) + latest["month"][4:]
+    prior = next((point["pct"] for point in avg if point["month"] == year_ago_month), None)
+    euribor = EURIBOR["rates"]["6M"]
+    diff = (Decimal(str(latest["pct"])) - Decimal(str(euribor["rate_pct"]))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    base = Decimal(str(latest["pct"]))
+    payment = annuity(100000, base, 300)
+    payment_up = annuity(100000, base + Decimal("0.1"), 300)
+    tenth_month = payment_up - payment
+    return {
+        "stats": stats,
+        "latest": latest,
+        "prior": prior,
+        "euribor": euribor,
+        "diff": diff,
+        "payment": payment,
+        "tenth_month": tenth_month,
+        "tenth_total": (tenth_month * 300).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP),
+    }
+
+
+def market_body(lang: str) -> str:
+    info = market_numbers(lang)
+    stats = info["stats"]
+    latest = info["latest"]
+    avg = stats["avg_rate_new_business_pct"]
+    var = {point["month"]: point["pct"] for point in stats["avg_rate_variable_upto_1y_pct"]}
+    volumes = {point["month"]: point["value"] for point in stats["volume_pure_new_loans_eur_million"]}
+
+    def num(value, places, lang):
+        quantized = Decimal(str(value)).quantize(Decimal("1." + "0" * places), rounding=ROUND_HALF_UP)
+        text = f"{quantized:.{places}f}"
+        return text.replace(".", ",") if lang == "et" else text
+
+    latest_text = fmt_pct(latest["pct"], lang)
+    prior_text = fmt_pct(info["prior"], lang) if info["prior"] is not None else T(lang, "not_published")
+    month = month_label(latest["month"], lang)
+
+    month_rows = []
+    for point in reversed(avg):
+        value = var.get(point["month"])
+        var_cell = esc(fmt_pct(value, lang)) if value is not None else "–"
+        month_rows.append(
+            "<tr>"
+            f'<th scope="row"><time datetime="{esc(point["month"])}">{esc(month_short(point["month"], lang))}</time></th>'
+            f'<td>{esc(fmt_pct(point["pct"], lang))}</td>'
+            f"<td>{var_cell}</td>"
+            "</tr>"
+        )
+
+    volume_months = list(volumes)[-3:]
+    if len(volume_months) == 3:
+        volume_text = T(lang, "market_volume_note").format(
+            jul=volumes[volume_months[0]], aug=volumes[volume_months[1]], sep=volumes[volume_months[2]]
+        )
+    else:
+        volume_text = ""
+
+    rates = sorted({Decimal("3.00"), Decimal("3.50"), Decimal("4.00"), Decimal("4.45"), Decimal("5.00"), Decimal(str(latest["pct"]))})
+    lowest_total = annuity(100000, rates[0], 300) * 300
+    cost_rows = []
+    for rate in rates:
+        payment = annuity(100000, rate, 300)
+        total = (payment * 300).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        extra = total - lowest_total
+        shown = f"{rate:.2f}".replace(".", ",") if lang == "et" else f"{rate:.2f}"
+        cost_rows.append(
+            "<tr>"
+            f"<th scope=\"row\">{esc(shown + '%')}</th>"
+            f"<td>{esc(fmt_money(payment, lang))}</td>"
+            f"<td>{esc(fmt_money(total, lang))}</td>"
+            f"<td>{esc(fmt_money(extra, lang)) if extra else '–'}</td>"
+            "</tr>"
+        )
+
+    lead = T(lang, "market_lead").format(month=month, latest=latest_text, prior=prior_text)
+    margin_note = T(lang, "market_margin_note").format(
+        date=info["euribor"]["value_date"],
+        euribor=fmt_pct(info["euribor"]["rate_pct"], lang),
+        latest=latest_text,
+        diff=num(info["diff"], 2, lang),
+    )
+    tenth_text = T(lang, "market_tenth_text").format(
+        monthly=fmt_money(info["tenth_month"], lang),
+        total=fmt_money(info["tenth_total"], lang),
+    )
+    source_text = T(lang, "market_source_text").format(
+        series=stats["avg_rate_new_business_series"].split(" (")[0],
+        checked=stats["checked"],
+    )
+    market = "turg" if lang == "et" else "market"
+    compare = "vorlus" if lang == "et" else "compare"
+    questions = "kusimused" if lang == "et" else "questions"
+    rules = "reeglid" if lang == "et" else "rules"
+
+    return (
+        crumbs_html(lang, [("Kodulaen", url_for(lang, "")), (T(lang, "nav_market"), None)])
+        + f'<h1>{esc(T(lang, "market_h1"))}</h1>'
+        + f'<p class="lead">{esc(lead)}</p>'
+        + f'<h2>{esc(T(lang, "market_trend_title"))}</h2>'
+        + f'<p>{esc(T(lang, "market_trend_note"))}</p>'
+        + '<div class="table-wrap"><table><caption>'
+        + esc(T(lang, "market_trend_title"))
+        + "</caption><thead><tr>"
+        + f'<th scope="col">{esc(T(lang, "month"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_avg"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_var"))}</th>'
+        + "</tr></thead><tbody>"
+        + "".join(month_rows)
+        + "</tbody></table></div>"
+        + (f'<p class="small">{esc(volume_text)}</p>' if volume_text else "")
+        + f'<p class="prov"><a href="{esc(stats["source"])}">{esc(T(lang, "source"))}</a> · <a href="{esc(stats["eesti_pank_stats_page"])}">Eesti Pank</a> <time datetime="{esc(stats["checked"])}">{esc(stats["checked"])}</time></p>'
+        + f'<h2>{esc(T(lang, "market_margin_title"))}</h2>'
+        + f'<p>{esc(margin_note)}</p>'
+        + f'<p>{esc(T(lang, "market_margin_caveat"))}</p>'
+        + f'<p><a href="{esc(url_for(lang, "euribor"))}">{esc(T(lang, "nav_euribor"))}</a></p>'
+        + f'<h2>{esc(T(lang, "market_tenth_title"))}</h2>'
+        + f'<p>{esc(tenth_text)}</p>'
+        + f'<h2>{esc(T(lang, "market_cost_title"))}</h2>'
+        + f'<p>{esc(T(lang, "market_cost_note"))}</p>'
+        + '<div class="table-wrap"><table><caption>'
+        + esc(T(lang, "market_cost_title"))
+        + "</caption><thead><tr>"
+        + f'<th scope="col">{esc(T(lang, "market_col_rate"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_payment"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_total"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_extra"))}</th>'
+        + "</tr></thead><tbody>"
+        + "".join(cost_rows)
+        + "</tbody></table></div>"
+        + f'<p>{esc(T(lang, "market_cost_caveat"))}</p>'
+        + f'<h2>{esc(T(lang, "market_why_title"))}</h2>'
+        + f'<p>{esc(T(lang, "market_why_text"))}</p>'
+        + f'<h2>{esc(T(lang, "market_source_title"))}</h2>'
+        + f'<p>{esc(source_text)}</p>'
+        + f'<h3>{esc(T(lang, "stats_next"))}</h3><p>{esc(tr(stats["next_release"], lang))}</p>'
+        + f'<h2>{esc(T(lang, "market_also_title"))}</h2>'
+        + f'<ul><li><a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a></li>'
+        + f'<li><a href="{esc(url_for(lang, rules))}">{esc(T(lang, "nav_rules"))}</a></li>'
+        + f'<li><a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a></li></ul>'
+    )
+
+
+def market_jsonld(lang: str) -> dict:
+    info = market_numbers(lang)
+    stats = info["stats"]
+    latest_text = fmt_pct(info["latest"]["pct"], lang)
+    prior_text = fmt_pct(info["prior"], lang) if info["prior"] is not None else ""
+    month = month_label(info["latest"]["month"], lang)
+    page_url = absolute(url_for(lang, "turg" if lang == "et" else "market"))
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "WebPage", "name": T(lang, "market_h1"), "url": page_url,
+             "dateModified": stats["checked"], "inLanguage": lang, "isPartOf": SITE + "/"},
+            {
+                "@type": "Dataset",
+                "name": T(lang, "market_h1"),
+                "description": T(lang, "market_desc").format(
+                    latest=latest_text, month=month, prior=prior_text),
+                "creator": {"@type": "Organization", "name": "Eesti Pank",
+                            "url": "https://www.eestipank.ee/"},
+                "citation": stats["source"],
+                "dateModified": stats["checked"],
+                "isAccessibleForFree": True,
+                "spatialCoverage": "Estonia",
+                "temporalCoverage": f"{stats['avg_rate_new_business_pct'][0]['month']}/{stats['avg_rate_new_business_pct'][-1]['month']}",
+                "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json",
+                                  "contentUrl": absolute(data_url("sources.json"))}],
+            },
+            breadcrumb(lang, [("Kodulaen", url_for(lang, "")), (T(lang, "nav_market"), url_for(lang, "turg" if lang == "et" else "market"))]),
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": T(lang, "market_faq_q1"),
+                        "acceptedAnswer": {"@type": "Answer", "text": T(lang, "market_faq_a1").format(
+                            month=month, latest=latest_text, prior=prior_text)},
+                    },
+                    {
+                        "@type": "Question",
+                        "name": T(lang, "market_faq_q2"),
+                        "acceptedAnswer": {"@type": "Answer", "text": T(lang, "market_faq_a2")},
+                    },
+                ],
+            },
+        ],
+    }
 
 
 FAQ = [
@@ -1916,6 +2226,13 @@ def build_pages() -> None:
                 breadcrumb(lang, [("Kodulaen", url_for(lang, "")), ("Euribor", url_for(lang, "euribor"))]),
             ],
         }, "", "euribor"))
+        market_rel = "turg" if lang == "et" else "market"
+        market_info = market_numbers(lang)
+        pages.append((lang, market_rel, "market", T(lang, "market_h1"), T(lang, "market_desc").format(
+            latest=fmt_pct(market_info["latest"]["pct"], lang),
+            month=month_label(market_info["latest"]["month"], lang),
+            prior=fmt_pct(market_info["prior"], lang) if market_info["prior"] is not None else T(lang, "not_published"),
+        ), market_body(lang), market_jsonld(lang), "", "market"))
         about_rel = "meist" if lang == "et" else "about"
         pages.append((lang, about_rel, "about", T(lang, "about_h1"), T(lang, "about_lead"), about_body(lang), {
             "@context": "https://schema.org",
@@ -1967,6 +2284,8 @@ def pair_rels(kind: str, rel: str, lang: str) -> tuple[str, str]:
         return "reeglid", "rules"
     if kind == "euribor":
         return "euribor", "euribor"
+    if kind == "market":
+        return "turg", "market"
     if kind == "about":
         return "meist", "about"
     if kind == "compare":

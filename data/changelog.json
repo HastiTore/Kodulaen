@@ -1,6 +1,11 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "entries": [
+    {
+      "date": "2026-11-10",
+      "et": "Lisandus leht „Keskmine kodulaenu intress Eestis“: Eesti Panga uute eluasemelaenude keskmine intress 15 kuu jooksul, 6 kuu Euribori ja keskmise vahe ning kulu 100 000 € laenul. Andmed on EKP andmeportaalist ja kontrollitud 2026-11-10.",
+      "en": "Added the page “Average housing-loan interest rate in Estonia”: the Eesti Pank average rate on new housing loans over 15 months, the gap between 6-month Euribor and the average, and the cost on a €100,000 loan. The figures come from the ECB data portal and were checked on 2026-11-10."
+    },
     {
       "date": "2026-11-09",
       "et": "Andmestiku versioon 0.1.0: kaheksa panga avaldatud eluasemelaenu tingimused kontrollitud.",

@@ -1,6 +1,17 @@
 import json, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-D="2026-11-09"
+D="2026-11-10"
+
+# Eesti Pank / ECB MIR series, monthly, pulled from the ECB Data Portal on 2026-11-10.
+# 15 months covers the year-on-year comparison in the market page.
+AVG = [("2025-07",3.79),("2025-08",3.78),("2025-09",3.75),("2025-10",3.75),("2025-11",3.76),
+       ("2025-12",3.73),("2026-01",3.80),("2026-02",3.77),("2026-03",3.88),("2026-04",4.05),
+       ("2026-05",4.12),("2026-06",4.14),("2026-07",4.25),("2026-08",4.26),("2026-09",4.45)]
+VAR = [("2025-07",3.68),("2025-08",3.69),("2025-09",3.67),("2025-10",3.67),("2025-11",3.69),
+       ("2025-12",3.67),("2026-01",3.68),("2026-02",3.69),("2026-03",3.80),("2026-04",3.93),
+       ("2026-05",4.02),("2026-06",4.06),("2026-07",4.14),("2026-08",4.16),("2026-09",4.37)]
+VOL = [("2026-07",293),("2026-08",270),("2026-09",302)]
+
 src = {
  "meta": {"updated": D, "note": "Official and reference context for the bank dataset. Values copied from the cited pages on the checked date."},
  "euribor_6m": {
@@ -15,13 +26,13 @@ src = {
    "checked": D},
  "eesti_pank_new_housing_loans": {
    "description": "Estonia, MFI interest rate statistics (compiled by Eesti Pank, published via the ECB Data Portal)",
-   "avg_rate_new_business_pct": [{"month":"2026-07","pct":4.25},{"month":"2026-08","pct":4.26},{"month":"2026-09","pct":4.45}],
+   "avg_rate_new_business_pct": [{"month":m,"pct":p} for m,p in AVG],
    "avg_rate_new_business_series": "MIR.M.EE.B.A2C.A.R.A.2250.EUR.N (loans to households for house purchase, new business incl. renegotiations, all fixation periods)",
-   "avg_rate_variable_upto_1y_pct": [{"month":"2026-07","pct":4.14},{"month":"2026-08","pct":4.16},{"month":"2026-09","pct":4.37}],
+   "avg_rate_variable_upto_1y_pct": [{"month":m,"pct":p} for m,p in VAR],
    "avg_rate_variable_series": "MIR.M.EE.B.A2C.F.R.A.2250.EUR.N",
-   "volume_pure_new_loans_eur_million": [{"month":"2026-07","value":293},{"month":"2026-08","value":270},{"month":"2026-09","value":302}],
+   "volume_pure_new_loans_eur_million": [{"month":m,"value":v} for m,v in VOL],
    "volume_series": "MIR.M.EE.B.A2C.A.B.A.2250.EUR.P (pure new loans, excludes renegotiations)",
-   "source": "https://data-api.ecb.europa.eu/service/data/MIR/M.EE.B.A2C.A.R.A.2250.EUR.N?lastNObservations=3",
+   "source": "https://data-api.ecb.europa.eu/service/data/MIR/M.EE.B.A2C.A.R.A.2250.EUR.N?lastNObservations=15",
    "eesti_pank_stats_page": "https://statistika.eestipank.ee/et/p/FINANTSSEKTOR/147/979",
    "next_release": "Eesti Pank Q3 2026 interest-rate statistics release on 2026-11-19 08:00 (per Eesti Pank press page); October bank statistics on 2026-11-25",
    "checked": D},

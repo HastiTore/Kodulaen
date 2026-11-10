@@ -2228,7 +2228,7 @@ def build_pages() -> None:
         }, "", "euribor"))
         market_rel = "turg" if lang == "et" else "market"
         market_info = market_numbers(lang)
-        pages.append((lang, market_rel, "market", T(lang, "market_h1"), T(lang, "market_desc").format(
+        pages.append((lang, market_rel, "market", f'{T(lang, "market_h1")} ({PAGE_MODIFIED[:4]})', T(lang, "market_desc").format(
             latest=fmt_pct(market_info["latest"]["pct"], lang),
             month=month_label(market_info["latest"]["month"], lang),
             prior=fmt_pct(market_info["prior"], lang) if market_info["prior"] is not None else T(lang, "not_published"),

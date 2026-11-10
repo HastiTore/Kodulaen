@@ -543,6 +543,52 @@ UI = {
         "et": "Ei. Keskmine sisaldab kõiki fikseerimisperioode ja ka refinantseeritud laene. Panga marginaal on individuaalne ega ole avalik.",
         "en": "No. The average covers all fixation periods and renegotiated loans too. A bank’s margin is individual and not public.",
     },
+    "nav_calculator": {"et": "Kalkulaator", "en": "Calculator"},
+    "calc_h1": {"et": "Kodulaenu kalkulaator", "en": "Housing-loan calculator"},
+    "calc_title": {"et": "Kodulaenu kalkulaator 2026", "en": "Housing-loan calculator (2026)"},
+    "calc_desc": {
+        "et": "Arvuta kodulaenu kuumakse 6 kuu Euribori ja oma marginaaliga. Näidisarvutus 100 000 € laenul, sama valem kui Kodulaenu tabelites, andmeid ei koguta.",
+        "en": "Work out the housing-loan payment from 6-month Euribor plus your margin. A worked example on a €100,000 loan, the same formula as Kodulaen’s tables, no data collected.",
+    },
+    "calc_lead": {
+        "et": "Arvuta kuumakse 6 kuu Euribori ja enda marginaaliga. Vaikimisi on marginaal 1,50%, sest Eesti Panga septembri keskmine intress 4,45% miinus 6 kuu Euribor 3,001% teeb umbes 1,45 protsendipunkti. Pank määrab marginaali igale kliendile eraldi, seega see arv on näide, mitte pakkumine.",
+        "en": "Work out the monthly payment from 6-month Euribor plus your margin. The default margin is 1.50%, because Eesti Pank’s September average of 4.45% minus 6-month Euribor of 3.001% is about 1.45 percentage points. Banks set the margin for each borrower, so this is an example, not an offer.",
+    },
+    "calc_amount": {"et": "Laenusumma (€)", "en": "Loan amount (€)"},
+    "calc_term": {"et": "Tähtaeg (aastat)", "en": "Term (years)"},
+    "calc_margin": {"et": "Marginaal (%)", "en": "Margin (%)"},
+    "calc_euribor": {"et": "6 kuu Euribor", "en": "6-month Euribor"},
+    "calc_button": {"et": "Arvuta", "en": "Calculate"},
+    "calc_rate": {"et": "Intress kokku", "en": "Total rate"},
+    "calc_payment": {"et": "Kuumakse", "en": "Monthly payment"},
+    "calc_total": {"et": "Kokku tagasi maksta", "en": "Total repaid"},
+    "calc_interest": {"et": "Intressikulu", "en": "Interest paid"},
+    "calc_compare": {"et": "Sama laen Eesti Panga keskmise intressiga ({rate})", "en": "The same loan at Eesti Pank’s average rate ({rate})"},
+    "calc_note": {
+        "et": "Arvutus on annuiteet ja ei sisalda lepingutasu, kontohooldust, kindlustust ega muid tasusid, seega panga maksegraafik on veidi suurem. Euribor muutub iga kuu, seega hilisem kuumakse erineb.",
+        "en": "The calculation is an annuity and excludes the contract fee, account fees, insurance and other charges, so the bank’s schedule will be slightly higher. Euribor changes every month, so a later payment will differ.",
+    },
+    "calc_how_title": {"et": "Kuidas kalkulaator arvutab", "en": "How the calculator works"},
+    "calc_how_text": {
+        "et": "Kuumakse = P × r × (1+r)^n / ((1+r)^n − 1), kus P on laenusumma, r on aastaintress / 12 ja n on kuude arv. Sama valemiga arvutab Kodulaen kõik lehel olevad näited, seega numbrid on omavahel võrreldavad. Tingimused ja tasud on pankade lehtedel.",
+        "en": "Payment = P × r × (1+r)^n / ((1+r)^n − 1), where P is the loan, r is the annual rate / 12, and n is the number of months. Kodulaen uses the same formula for every example on the site, so the numbers are comparable. The terms and fees are on the banks’ pages.",
+    },
+    "calc_static_title": {"et": "Kui JavaScript on väljas", "en": "If JavaScript is off"},
+    "calc_static_note": {
+        "et": "Ilma JavaScriptita näitab see tabel kuumakset 100 000 € laenul 25 aastaks viiel intressimääral. Sisesta oma arvud ja arvuta sama valemiga.",
+        "en": "Without JavaScript this table shows the payment on a €100,000 loan over 25 years at five rates. Enter your own figures and use the same formula.",
+    },
+    "calc_down_link": {"et": "Kui palju peab sissemaksuks olema", "en": "How much the down payment must be"},
+    "calc_faq_q1": {"et": "Kuidas kodulaenu kuumakse arvutatakse?", "en": "How is a housing-loan monthly payment calculated?"},
+    "calc_faq_a1": {
+        "et": "Annuiteedivalemiga: kuumakse = P × r × (1+r)^n / ((1+r)^n − 1). P on laenusumma, r aastaintress jagatud 12-ga ja n kuude arv. Sama valem kehtib kogu tähtaja jooksul, kui intress ei muutu.",
+        "en": "With the annuity formula: payment = P × r × (1+r)^n / ((1+r)^n − 1). P is the loan, r the annual rate divided by 12, and n the number of months. The same payment applies for the whole term if the rate does not change.",
+    },
+    "calc_faq_q2": {"et": "Miks ei ole see panga pakkumine?", "en": "Why is this not a bank offer?"},
+    "calc_faq_a2": {
+        "et": "Sest marginaali ja lõpliku intressi otsustab pank pärast sissetuleku, tagatise ja krediidiajaloo hindamist. Kalkulaator teeb ainult aritmeetikat ega saada andmeid kuhugi.",
+        "en": "Because the bank decides the margin and the final rate after assessing income, collateral and credit history. The calculator only does arithmetic and sends the figures nowhere.",
+    },
 }
 
 
@@ -1101,6 +1147,7 @@ def render_document(lang, rel, title, description, body, current, jsonld, et_rel
     nav = [
         ("", T(lang, "nav_home"), "home"),
         ("vorlus" if lang == "et" else "compare", T(lang, "nav_compare"), "compare"),
+        ("kalkulaator" if lang == "et" else "calculator", T(lang, "nav_calculator"), "calculator"),
         ("kusimused" if lang == "et" else "questions", T(lang, "nav_questions"), "questions"),
         ("reeglid" if lang == "et" else "rules", T(lang, "nav_rules"), "rules"),
         ("euribor", T(lang, "nav_euribor"), "euribor"),
@@ -1379,7 +1426,7 @@ def home_body(lang: str) -> str:
 {euribor_strip(lang)}
 <h1>{esc(T(lang, "home_h1"))}</h1>
 <p class="lead">{esc(T(lang, "home_lead"))}</p>
-<p><a href="{esc(url_for(lang, market))}">{esc(T(lang, "nav_market"))}</a> · <a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a> · <a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a> · <a href="{esc(url_for(lang, changes))}">{esc(T(lang, "nav_changes"))}</a></p>
+<p><a href="{esc(url_for(lang, market))}">{esc(T(lang, "nav_market"))}</a> · <a href="{esc(url_for(lang, "kalkulaator" if lang == "et" else "calculator"))}">{esc(T(lang, "nav_calculator"))}</a> · <a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a> · <a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a> · <a href="{esc(url_for(lang, changes))}">{esc(T(lang, "nav_changes"))}</a></p>
 <section aria-labelledby="how">
   <h2 id="how">{esc(T(lang, "home_read_title"))}</h2>
   <ul>
@@ -1898,7 +1945,8 @@ def market_body(lang: str) -> str:
         + f'<p>{esc(source_text)}</p>'
         + f'<h3>{esc(T(lang, "stats_next"))}</h3><p>{esc(tr(stats["next_release"], lang))}</p>'
         + f'<h2>{esc(T(lang, "market_also_title"))}</h2>'
-        + f'<ul><li><a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a></li>'
+        + f'<ul><li><a href="{esc(url_for(lang, "kalkulaator" if lang == "et" else "calculator"))}">{esc(T(lang, "calc_h1"))}</a></li>'
+        + f'<li><a href="{esc(url_for(lang, compare))}">{esc(T(lang, "nav_compare"))}</a></li>'
         + f'<li><a href="{esc(url_for(lang, rules))}">{esc(T(lang, "nav_rules"))}</a></li>'
         + f'<li><a href="{esc(url_for(lang, questions))}">{esc(T(lang, "nav_questions"))}</a></li></ul>'
     )
@@ -1946,6 +1994,103 @@ def market_jsonld(lang: str) -> dict:
                         "name": T(lang, "market_faq_q2"),
                         "acceptedAnswer": {"@type": "Answer", "text": T(lang, "market_faq_a2")},
                     },
+                ],
+            },
+        ],
+    }
+
+
+def calculator_body(lang: str) -> str:
+    info = market_numbers(lang)
+    euribor = info["euribor"]
+    average = info["latest"]["pct"]
+    euribor_text = fmt_pct(euribor["rate_pct"], lang)
+    default_margin_text = "1.50"
+    euribor_date = dmy(euribor["value_date"])
+
+    static_rows = []
+    for rate in (Decimal("3.00"), Decimal("3.50"), Decimal("4.00"), Decimal(str(average)), Decimal("5.00")):
+        payment = annuity(100000, rate, 300)
+        total = (payment * 300).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        shown = f"{rate:.2f}".replace(".", ",") if lang == "et" else f"{rate:.2f}"
+        static_rows.append(
+            "<tr>"
+            f'<th scope="row">{esc(shown + "%")}</th>'
+            f"<td>{esc(fmt_money(payment, lang))}</td>"
+            f"<td>{esc(fmt_money(total, lang))}</td>"
+            "</tr>"
+        )
+
+    market_rel = "turg" if lang == "et" else "market"
+    down_rel = "kusimused/sissemakse" if lang == "et" else "questions/down-payment"
+    banks_rel = "vorlus" if lang == "et" else "compare"
+    rate_word = "intress" if lang == "et" else "rate"
+    return (
+        crumbs_html(lang, [("Kodulaen", url_for(lang, "")), (T(lang, "nav_calculator"), None)])
+        + f'<h1>{esc(T(lang, "calc_h1"))}</h1>'
+        + f'<p class="lead">{esc(T(lang, "calc_lead"))}</p>'
+        + f'<form class="calc" id="calc" data-euribor="{esc(str(euribor["rate_pct"]))}" '
+        + f'data-average="{esc(str(average))}" data-lang="{esc(lang)}" data-rate-word="{esc(rate_word)}">'
+        + f'<p><label for="calc-amount">{esc(T(lang, "calc_amount"))}</label>'
+        + '<input id="calc-amount" name="amount" type="number" inputmode="decimal" min="1000" max="1000000" step="100" value="100000"></p>'
+        + f'<p><label for="calc-term">{esc(T(lang, "calc_term"))}</label>'
+        + '<input id="calc-term" name="term" type="number" inputmode="numeric" min="1" max="30" step="1" value="25"></p>'
+        + f'<p><label for="calc-margin">{esc(T(lang, "calc_margin"))}</label>'
+        + f'<input id="calc-margin" name="margin" type="number" inputmode="decimal" min="0" max="10" step="0.01" value="{esc(default_margin_text)}"></p>'
+        + f'<p class="small">{esc(T(lang, "calc_euribor"))}: {esc(euribor_text)} <time datetime="{esc(euribor["value_date"])}">{esc(euribor_date)}</time></p>'
+        + f'<p><button type="submit">{esc(T(lang, "calc_button"))}</button></p>'
+        + "</form>"
+        + '<div id="calc-out" aria-live="polite"></div>'
+        + f'<p class="small">{esc(T(lang, "calc_note"))}</p>'
+        + f'<h2>{esc(T(lang, "calc_static_title"))}</h2>'
+        + f'<p>{esc(T(lang, "calc_static_note"))}</p>'
+        + '<div class="table-wrap"><table><caption>'
+        + esc(T(lang, "calc_h1"))
+        + "</caption><thead><tr>"
+        + f'<th scope="col">{esc(T(lang, "market_col_rate"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_payment"))}</th>'
+        + f'<th scope="col">{esc(T(lang, "market_col_total"))}</th>'
+        + "</tr></thead><tbody>"
+        + "".join(static_rows)
+        + "</tbody></table></div>"
+        + f'<h2>{esc(T(lang, "calc_how_title"))}</h2>'
+        + f'<p>{esc(T(lang, "calc_how_text"))}</p>'
+        + f'<h2>{esc(T(lang, "market_also_title"))}</h2>'
+        + f'<ul><li><a href="{esc(url_for(lang, down_rel))}">{esc(T(lang, "calc_down_link"))}</a></li>'
+        + f'<li><a href="{esc(url_for(lang, market_rel))}">{esc(T(lang, "nav_market"))}</a></li>'
+        + f'<li><a href="{esc(url_for(lang, banks_rel))}">{esc(T(lang, "nav_compare"))}</a></li></ul>'
+    )
+
+
+def calculator_jsonld(lang: str) -> dict:
+    page_rel = "kalkulaator" if lang == "et" else "calculator"
+    page_url = absolute(url_for(lang, page_rel))
+    return {
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "WebPage", "name": T(lang, "calc_title"), "url": page_url,
+             "dateModified": PAGE_MODIFIED, "inLanguage": lang, "isPartOf": SITE + "/"},
+            {
+                "@type": "WebApplication",
+                "name": T(lang, "calc_h1"),
+                "url": page_url,
+                "applicationCategory": "FinanceApplication",
+                "operatingSystem": "Any",
+                "isAccessibleForFree": True,
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+                "featureList": T(lang, "calc_how_text"),
+                "provider": organisation(),
+            },
+            breadcrumb(lang, [("Kodulaen", url_for(lang, "")), (T(lang, "nav_calculator"), url_for(lang, page_rel))]),
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": T(lang, f"calc_faq_q{index}"),
+                        "acceptedAnswer": {"@type": "Answer", "text": T(lang, f"calc_faq_a{index}")},
+                    }
+                    for index in (1, 2)
                 ],
             },
         ],
@@ -2233,6 +2378,9 @@ def build_pages() -> None:
             month=month_label(market_info["latest"]["month"], lang),
             prior=fmt_pct(market_info["prior"], lang) if market_info["prior"] is not None else T(lang, "not_published"),
         ), market_body(lang), market_jsonld(lang), "", "market"))
+        calc_rel = "kalkulaator" if lang == "et" else "calculator"
+        pages.append((lang, calc_rel, "calculator", T(lang, "calc_title"), T(lang, "calc_desc"),
+                      calculator_body(lang), calculator_jsonld(lang), "", "calculator"))
         about_rel = "meist" if lang == "et" else "about"
         pages.append((lang, about_rel, "about", T(lang, "about_h1"), T(lang, "about_lead"), about_body(lang), {
             "@context": "https://schema.org",
@@ -2261,7 +2409,10 @@ def build_pages() -> None:
     for lang, rel, current, title, description, body, payload, extra, kind in pages:
         actual_current = current if kind != "bank" else "bank"
         et_rel, en_rel = pair_rels(kind, rel, lang)
-        scripts = f'<script src="{esc(asset("sort.js"))}" defer></script>' if kind in ("home", "compare") and rel in ("", "vorlus", "compare") else ""
+        if kind == "calculator":
+            scripts = f'<script src="{esc(asset("calc.js"))}" defer></script>'
+        else:
+            scripts = f'<script src="{esc(asset("sort.js"))}" defer></script>' if kind in ("home", "compare") and rel in ("", "vorlus", "compare") else ""
         html_doc = render_document(lang, rel, title, description, body, actual_current, payload, et_rel, en_rel, scripts)
         write(page_out(lang, rel), html_doc)
         if lang == "et" and kind != "none":
@@ -2286,6 +2437,8 @@ def pair_rels(kind: str, rel: str, lang: str) -> tuple[str, str]:
         return "euribor", "euribor"
     if kind == "market":
         return "turg", "market"
+    if kind == "calculator":
+        return "kalkulaator", "calculator"
     if kind == "about":
         return "meist", "about"
     if kind == "compare":
@@ -2566,7 +2719,13 @@ def validate() -> None:
         parser.feed(text)
         visible = " ".join(parser.text)
         if parser.forms:
-            errors.append(f"Form found in {path}")
+            # The calculator is the only form on the site. It has no action and no
+            # server side: every figure stays in the browser.
+            on_calculator = "/kalkulaator/" in str(path) or "/calculator/" in str(path)
+            if not on_calculator:
+                errors.append(f"Form found in {path}")
+            elif "action=" in text:
+                errors.append(f"Calculator form must not post anywhere: {path}")
         if "<main" not in text or 'id="sisu"' not in text:
             errors.append(f"Missing main in {path}")
         if path.name != "404.html" and "disclaimer" not in text:
@@ -2659,6 +2818,14 @@ def validate() -> None:
     faq = DIST / "kusimused" / "sissemakse" / "index.html"
     if not faq.exists() or "FAQPage" not in faq.read_text(encoding="utf-8"):
         errors.append("Down-payment question page is missing FAQPage JSON-LD")
+    for rel in ("kalkulaator", "en/calculator"):
+        page = DIST / rel / "index.html"
+        if not page.exists():
+            errors.append(f"Calculator page missing: {rel}")
+        elif "WebApplication" not in page.read_text(encoding="utf-8"):
+            errors.append(f"Calculator page is missing WebApplication JSON-LD: {rel}")
+    if not (DIST / "assets" / "calc.js").exists():
+        errors.append("calc.js was not copied into the build")
     if not (DIST / "vorlus" / "index.html").exists() or not (DIST / "muudatused" / "index.html").exists():
         errors.append("Comparison or changes page is missing")
     if errors:

@@ -99,7 +99,79 @@ def down_payment(lang):
         f'<time datetime="{S.esc(rules["checked"])}">{S.esc(rules["checked"])}</time> · '
         f'<a href="{S.esc(eis["source"])}">EIS</a> <time datetime="{S.esc(eis["checked"])}">{S.esc(eis["checked"])}</time></p>'
     )
-    return title, lead, lead_and_table(lang, title, lead, caption, headers, rows, sources)
+    calc_rel = "kalkulaator" if lang == "et" else "calculator"
+    if lang == "et":
+        example_title = "Mida see koduhinna puhul tähendab"
+        example_note = (
+            "Sissemakse summa, kui kodu maksab 150 000, 200 000 või 250 000 €. Arvutus on lihtne protsent "
+            "hinnast ega sisalda notari-, riigilõivu- ega hindamistasu, mis tulevad sissemaksele lisaks."
+        )
+        example_headers = ["Kodu hind", "15% sissemakse", "10% EIS-iga", "5% lasterikka perega"]
+        replace_title = "Millega saab sissemakset asendada"
+        replace_items = [
+            (
+                "Lisatagatis.",
+                "Mitmed pangad lubavad sissemakse asemel anda teise kinnisvara tagatiseks. Bigbanki, Holmi ja "
+                "Swedbanki lehtedel on sellega võimalik jõuda 0%-ni. Pank hindab lisatagatise eraldi ja võib selle vastu võtmata jätta.",
+            ),
+            (
+                "EIS-i käendus.",
+                "Käendus katab kuni 24% tagatise väärtusest, kõige rohkem 20 000 €; energiatõhusal kodul kuni 50 000 € "
+                "ja lasterikka pere puhul kuni 40%, kõige rohkem 50 000 €. Tasu on 3% käendatud summast, lasterikka perel 2%, "
+                "ühekordselt lepingule alla kirjutades. Käendust taotletakse panga kaudu, eraldi avaldust EIS-ile ei ole, "
+                "ja selle väljastavad kõik kaheksa panka, keda Kodulaen jälgib.",
+            ),
+            (
+                "MES-i kaaslaen.",
+                "Coop Pank nimetab sissemakse katmise võimalusena MES-i kaaslaenu. See on eraldi laen oma intressi ja tähtajaga, seega ei ole päris oma raha.",
+            ),
+        ]
+        calc_text = "Arvuta kuumakse kalkulaatoriga"
+    else:
+        example_title = "What it means on a property price"
+        example_note = (
+            "The cash needed if the home costs €150,000, €200,000 or €250,000. This is a simple percentage of the "
+            "price and excludes the notary fee, state fee and valuation, which come on top of the down payment."
+        )
+        example_headers = ["Home price", "15% down payment", "10% with EIS", "5% large family"]
+        replace_title = "What can replace the down payment"
+        replace_items = [
+            (
+                "Additional collateral.",
+                "Several banks allow another property to be pledged instead of cash. Bigbank, Holm and Swedbank state "
+                "that this can bring the down payment to 0%. The bank values the additional collateral separately and may refuse it.",
+            ),
+            (
+                "EIS guarantee.",
+                "The guarantee covers up to 24% of the collateral value, at most €20,000; up to €50,000 for an energy-efficient "
+                "home, and up to 40% or up to €50,000 for a large family. The fee is 3% of the guaranteed amount, 2% for a large "
+                "family, paid once at signing. You apply through the bank; there is no separate application to EIS, and all "
+                "eight banks that Kodulaen follows issue it.",
+            ),
+            (
+                "MES co-loan.",
+                "Coop Pank names an MES co-loan as a way to cover the down payment. That is a separate loan with its own rate and term, so it is not really your own money.",
+            ),
+        ]
+        calc_text = "Work out the monthly payment"
+    example_rows = []
+    for price in (150000, 200000, 250000):
+        example_rows.append([
+            S.esc(S.fmt_money(price, lang)),
+            S.esc(S.fmt_money(S.Decimal(price) * S.Decimal("0.15"), lang)),
+            S.esc(S.fmt_money(S.Decimal(price) * S.Decimal("0.10"), lang)),
+            S.esc(S.fmt_money(S.Decimal(price) * S.Decimal("0.05"), lang)),
+        ])
+    extra = (
+        f"<h2>{S.esc(example_title)}</h2>"
+        + f"<p>{S.esc(example_note)}</p>"
+        + simple_table(lang, example_title, example_headers, example_rows)
+        + f"<h2>{S.esc(replace_title)}</h2><ul>"
+        + "".join(f"<li><strong>{S.esc(head)}</strong> {S.esc(body)}</li>" for head, body in replace_items)
+        + "</ul>"
+        + f'<p><a href="{S.esc(S.url_for(lang, calc_rel))}">{S.esc(calc_text)}</a></p>'
+    )
+    return title, lead, lead_and_table(lang, title, lead, caption, headers, rows, sources) + extra
 
 
 def eis_groups(lang):

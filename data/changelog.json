@@ -3,6 +3,11 @@
   "entries": [
     {
       "date": "2026-11-10",
+      "et": "Lisandus kodulaenu kalkulaator: kuumakse 6 kuu Euribori ja enda marginaaliga, sama annuiteedivalem kui ülejäänud lehel. Arvutus toimub brauseris, andmeid ei saadeta kuhugi. Sissemakse lehele lisandus tabel, mis näitab 150 000–250 000 € kodu puhul vajaminevat raha.",
+      "en": "Added a housing-loan calculator: the monthly payment from 6-month Euribor plus your own margin, using the same annuity formula as the rest of the site. The arithmetic runs in the browser and nothing is sent anywhere. The down-payment page now shows the cash needed on a €150,000–€250,000 home."
+    },
+    {
+      "date": "2026-11-10",
       "et": "Lisandus leht „Keskmine kodulaenu intress Eestis“: Eesti Panga uute eluasemelaenude keskmine intress 15 kuu jooksul, 6 kuu Euribori ja keskmise vahe ning kulu 100 000 € laenul. Andmed on EKP andmeportaalist ja kontrollitud 2026-11-10.",
       "en": "Added the page “Average housing-loan interest rate in Estonia”: the Eesti Pank average rate on new housing loans over 15 months, the gap between 6-month Euribor and the average, and the cost on a €100,000 loan. The figures come from the ECB data portal and were checked on 2026-11-10."
     },

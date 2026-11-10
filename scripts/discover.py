@@ -437,6 +437,86 @@ def refinancing(lang):
     return title, lead, lead_and_table(lang, title, lead, caption, headers, rows, "")
 
 
+def tax_deduction(lang):
+    emta = S.SOURCES["emta_housing_loan_interest"]
+    cap = S.fmt_money(emta["annual_cap_eur"], lang)
+    refund = S.fmt_money(emta["max_refund_eur"], lang)
+    if lang == "et":
+        title = "Kas kodulaenu intressid saab tulumaksust tagasi? (2026)"
+        lead = (
+            f"Ei. Alates 1. jaanuarist 2024 ei saa eraisik eluasemelaenu intresse maksustatavast tulust maha arvata. "
+            f"Viimast korda sai seda teha 2023. aasta eest esitatud tuludeklaratsioonil. Enne seda oli piir {cap} "
+            f"intresse aastas ja tagastus kuni {refund}."
+        )
+        headers = ["Aeg", "Reegel", "Mõju"]
+        caption = "Eluasemelaenu intresside maksustamine. Allikas: Maksu- ja Tolliamet."
+        rows = [
+            ["Kuni 2023", f"Ühe eluaseme laenuintresse sai tulust maha arvata kuni {cap} aastas", f"Tagastus kuni {refund}, sest tulumaks oli 20%"],
+            ["Alates 2024", "Eluasemelaenu intresse maha arvata ei saa", "Tagastust ei ole"],
+        ]
+        changed_title = "Mida see kuumaksele tähendab"
+        changed_text = (
+            "Ei midagi. Mahaarvamine ei olnud toetus laenumaksele, vaid kord aastas tuludeklaratsioonil tehtav "
+            "korrigeerimine, mis vähendas tulumaksu. Kuumakse suurus sõltub endiselt intressist, tähtajast ja tasudest."
+        )
+        rest_title = "Mida saab edasi maha arvata"
+        rest_text = (
+            f"Koolituskulusid ja annetusi kuni {S.fmt_money(1200, lang)}, kuid mitte rohkem kui 50% maksustatavast tulust, "
+            f"ning III samba sissemakseid kuni 15% maksustatavast tulust ja {S.fmt_money(6000, lang)} aastas. "
+            "Eluasemelaenu intresse selles loetelus enam ei ole."
+        )
+        why_title = "Miks seda ikka küsitakse"
+        why_text = (
+            "Sest vanemad artiklid ja nõuanded on endiselt loetavad ning osa neist räägib ajast, mil mahaarvamine kehtis. "
+            "Muudatus jõustus 2024. aasta tuludeklaratsiooniga, millega deklareeriti 2023. aasta tulu."
+        )
+    else:
+        title = "Can housing-loan interest be claimed back from income tax? (2026)"
+        lead = (
+            f"No. Since 1 January 2024 an individual cannot deduct housing-loan interest from taxable income. "
+            f"The last time was the income-tax return for 2023. Before that the cap was {cap} of interest a year and "
+            f"the refund at most {refund}."
+        )
+        headers = ["Period", "Rule", "Effect"]
+        caption = "Taxation of housing-loan interest. Source: Estonian Tax and Customs Board."
+        rows = [
+            ["Until 2023", f"Interest on one home could be deducted up to {cap} a year", f"A refund of up to {refund}, because income tax was 20%"],
+            ["From 2024", "Housing-loan interest cannot be deducted", "No refund"],
+        ]
+        changed_title = "What it means for the monthly payment"
+        changed_text = (
+            "Nothing. The deduction was not a subsidy for the loan payment but a yearly adjustment on the income-tax "
+            "return that lowered the tax bill. The payment still depends on the rate, the term and the fees."
+        )
+        rest_title = "What can still be deducted"
+        rest_text = (
+            "Training costs and donations up to €1,200, but not more than 50% of taxable income, and III pillar "
+            "contributions up to 15% of taxable income and €6,000 a year. Housing-loan interest is no longer on that list."
+        )
+        why_title = "Why people still ask"
+        why_text = (
+            "Because older articles and advice are still readable, and some of them describe the years when the "
+            "deduction existed. The change took effect with the 2024 return, which declared 2023 income."
+        )
+    calc_rel = "kalkulaator" if lang == "et" else "calculator"
+    market_rel = "turg" if lang == "et" else "market"
+    body = (
+        S.crumbs_html(lang, [("Kodulaen", S.url_for(lang, "")), (S.T(lang, "nav_questions"), S.url_for(lang, "kusimused" if lang == "et" else "questions")), (title, None)])
+        + f"<h1>{S.esc(title)}</h1>"
+        + f'<p class="lead">{S.esc(lead)}</p>'
+        + f"<h2>{S.esc('Muudatus' if lang == 'et' else 'The change')}</h2>"
+        + simple_table(lang, caption, headers, [[S.esc(cell) for cell in row] for row in rows])
+        + f'<p class="prov"><a href="{S.esc(emta["source"])}">{"Maksu- ja Tolliamet" if lang == "et" else "Estonian Tax and Customs Board"}</a> '
+        + f'<time datetime="{S.esc(emta["checked"])}">{S.esc(emta["checked"])}</time></p>'
+        + f"<h2>{S.esc(changed_title)}</h2><p>{S.esc(changed_text)}</p>"
+        + f"<h2>{S.esc(rest_title)}</h2><p>{S.esc(rest_text)}</p>"
+        + f"<h2>{S.esc(why_title)}</h2><p>{S.esc(why_text)}</p>"
+        + f'<p><a href="{S.esc(S.url_for(lang, calc_rel))}">{S.esc(S.T(lang, "calc_h1"))}</a> · '
+        + f'<a href="{S.esc(S.url_for(lang, market_rel))}">{S.esc(S.T(lang, "nav_market"))}</a></p>'
+    )
+    return title, lead, body
+
+
 QUESTIONS = [
     ("sissemakse", "down-payment", down_payment),
     ("eis-kaendus", "eis-guarantee", eis_groups),
@@ -447,6 +527,7 @@ QUESTIONS = [
     ("ehituslaen", "construction-loan", construction),
     ("lepingutasu", "contract-fee", contract_fee),
     ("refinantseerimine", "refinancing", refinancing),
+    ("tulumaks", "tax-deduction", tax_deduction),
 ]
 
 

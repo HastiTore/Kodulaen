@@ -36,6 +36,14 @@ src = {
    "eesti_pank_stats_page": "https://statistika.eestipank.ee/et/p/FINANTSSEKTOR/147/979",
    "next_release": "Eesti Pank Q3 2026 interest-rate statistics release on 2026-11-19 08:00 (per Eesti Pank press page); October bank statistics on 2026-11-25",
    "checked": D},
+ "emta_housing_loan_interest": {
+   "deduction_ended": "2024-01-01",
+   "last_year_deductible": 2023,
+   "annual_cap_eur": 300,
+   "max_refund_eur": 60,
+   "tax_rate_then_pct": 20,
+   "still_deductible": "Training costs and donations up to €1,200 but not more than 50% of taxable income; III pillar contributions up to 15% of taxable income and €6,000 a year",
+   "source": "https://emta.ee/eraklient/eluasemelaenu-intressid", "checked": D},
  "eesti_pank_lending_rules": {
    "max_ltv_pct": 85, "max_ltv_state_guaranteed_pct": 90,
    "max_dsti_pct": 50, "dsti_stress_rate": "higher of contract rate or 6% for variable-rate loans",

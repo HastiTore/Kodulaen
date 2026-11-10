@@ -155,17 +155,10 @@
         "checked": "2026-11-09"
       },
       "eis_programs": {
-        "value": [
-          "young_family",
-          "young_specialist",
-          "energy_efficient",
-          "large_family",
-          "veteran",
-          "returned_dwelling_tenant"
-        ],
-        "note": "Bigbank's own page describes the EIS (KredEx) guarantee without itemising target groups. EIS lists Bigbank among the banks offering the guarantee, which covers these target groups. The rural guarantee is a separate product.",
-        "source": "https://eis.ee/teenused/eluasemelaenu-kaendus/",
-        "checked": "2026-11-10"
+        "value": null,
+        "note": "Bigbank's page describes the EIS (KredEx) guarantee but does not itemise target groups. EIS lists Bigbank among the eight banks that issue the guarantee, so all six groups can be used; Bigbank does not set them out. The rural guarantee is a separate product.",
+        "source": "https://www.bigbank.ee/kodulaen/",
+        "checked": "2026-11-09"
       },
       "eis_rural": {
         "value": false,

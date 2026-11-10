@@ -43,7 +43,7 @@ banks.append(dict(
    ], BIGBANK_INSIDER, "Construction loan (ehituslaen). LTV starts at usually 50% of the value of the land plot; once the building is closed (walls, roof, windows and doors installed) the LTV increases to 70%; once the building is 95% complete the LTV increases to 85%."),
  max_term_years=F(30, P),
  eis_participation=F(True, P),
- eis_programs=F(["young_family", "young_specialist", "energy_efficient", "large_family", "veteran", "returned_dwelling_tenant"], EIS_PAGE, "Bigbank's own page describes the EIS (KredEx) guarantee without itemising target groups. EIS lists Bigbank among the banks offering the guarantee, which covers these target groups. The rural guarantee is a separate product.", checked="2026-11-10"),
+ eis_programs=F(None, P, "Bigbank's page describes the EIS (KredEx) guarantee but does not itemise target groups. EIS lists Bigbank among the eight banks that issue the guarantee, so all six groups can be used; Bigbank does not set them out. The rural guarantee is a separate product."),
  eis_rural=F(False, EIS_RURAL, "EIS says the rural guarantee is offered by Coop Pank and Citadele only. Bigbank accepts the MES rural co-loan (kaaslaen) up to 50% of the need."),
  green_discount=F(None, P, "No energy-class discount published."),
  young_buyer_offer=F(None, P, "None published beyond EIS."),

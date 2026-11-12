@@ -2,28 +2,28 @@
   "source_url": "https://www.euribor-rates.eu/en/",
   "source_type": "secondary: euribor-rates.eu republishes EMMI Euribor with a 24-hour delay",
   "administrator": "European Money Markets Institute (EMMI), https://www.emmi-benchmarks.eu/",
-  "fetched_at": "2026-11-11T13:04:17+00:00",
-  "updated": "2026-11-11",
+  "fetched_at": "2026-11-12T14:06:48+00:00",
+  "updated": "2026-11-12",
   "licensing_note": "Open question: public redistribution of Euribor values may require an EMMI licence.",
   "rates": {
     "1M": {
-      "rate_pct": 2.475,
-      "value_date": "2026-11-10",
+      "rate_pct": 2.487,
+      "value_date": "2026-11-11",
       "source_url": "https://www.euribor-rates.eu/en/"
     },
     "3M": {
-      "rate_pct": 2.738,
-      "value_date": "2026-11-10",
+      "rate_pct": 2.754,
+      "value_date": "2026-11-11",
       "source_url": "https://www.euribor-rates.eu/en/"
     },
     "6M": {
-      "rate_pct": 3.018,
-      "value_date": "2026-11-10",
+      "rate_pct": 3.01,
+      "value_date": "2026-11-11",
       "source_url": "https://www.euribor-rates.eu/en/"
     },
     "12M": {
-      "rate_pct": 3.217,
-      "value_date": "2026-11-10",
+      "rate_pct": 3.222,
+      "value_date": "2026-11-11",
       "source_url": "https://www.euribor-rates.eu/en/"
     }
   }
